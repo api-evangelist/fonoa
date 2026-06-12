@@ -1,0 +1,84 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+provider: Fonoa
+providerId: fonoa
+created: '2026-06-12'
+modified: '2026-06-12'
+description: >
+  FinOps framework for managing Fonoa API spend. Fonoa uses an enterprise commitment-based
+  billing model supplemented by per-document and per-organization overage charges. Cost
+  visibility requires tracking document submission volume and the number of active
+  organizations managed through the platform.
+billingModel:
+  type: commitment_plus_usage
+  description: >
+    Fixed annual/multi-year commitment fee covers a baseline of usage. Overages for
+    additional organizations and documents (EUR 0.30 per document) are billed on top
+    of the commitment. Billing is typically invoiced monthly or quarterly under enterprise contract.
+  currency: EUR
+  invoiceCycle: monthly
+focusColumns:
+  - column: BilledCost
+    description: Total invoiced amount including commitment fee plus document and organization overages
+  - column: EffectiveCost
+    description: Amortized commitment cost plus actual overage charges in the billing period
+  - column: ResourceId
+    description: Fonoa subscription key identifier used for cost attribution
+  - column: ResourceType
+    description: >
+      API product type — Validate, TaxEngine, E-Invoicing, Onboarding, or Webhooks
+  - column: UsageQuantity
+    description: Number of documents submitted or organizations managed in the period
+  - column: UsageUnit
+    description: document | organization
+  - column: ServiceName
+    description: Fonoa
+  - column: ServiceCategory
+    description: Tax Automation / Compliance Technology
+  - column: Region
+    description: Global (Fonoa serves 100+ countries from its Ireland-headquartered platform)
+meters:
+  - name: DocumentSubmissions
+    description: Count of e-invoices, tax reports, and transaction documents submitted via API
+    unit: document
+    unitPrice: 0.30
+    currency: EUR
+    notes: >
+      Applies to submissions beyond committed volume. Tracked per subscription key.
+      Includes e-invoicing submissions, transaction reports, and backfill operations.
+  - name: OrganizationCount
+    description: Number of organizations (companies/individuals) onboarded and managed on the platform
+    unit: organization
+    notes: >
+      Overage charges apply per additional organization beyond the contract's included count.
+      Track via Onboarding API participant records.
+  - name: ValidationRequests
+    description: Tax ID (TIN/VAT) validation requests, instant and batch
+    unit: validation
+    notes: >
+      May be included in commitment or subject to volume-based pricing depending on contract tier.
+      Batch validations count by number of IDs in the batch, not by API call.
+  - name: TaxCalculations
+    description: Tax rate determination requests via the Tax Engine API
+    unit: calculation
+    notes: >
+      Typically bundled into the platform commitment; track volume to monitor commitment utilization.
+principles:
+  - name: Visibility
+    description: >
+      Use Fonoa's transaction retrieval endpoints to export submission counts per period.
+      Map document submissions and organization counts to cost centers or product lines
+      using metadata (e.g., customer reference IDs, transaction types) passed in API requests.
+      Correlate Fonoa invoice line items against document volume from the Transactions API.
+  - name: Optimization
+    description: >
+      Reduce document overage costs by batching TIN validations rather than making individual
+      calls. Use webhooks instead of polling to eliminate unnecessary API calls that count
+      against rate limits. Audit onboarded organization records regularly to remove stale
+      participants that contribute to per-organization charges. Negotiate commitment volume
+      based on projected annual document throughput to minimize per-document overage rates.
+  - name: Accountability
+    description: >
+      Attribute Fonoa costs by business unit using separate subscription keys per team or
+      product line. Request itemized invoices from Fonoa's account team to reconcile
+      document submissions by country mandate or API product type.

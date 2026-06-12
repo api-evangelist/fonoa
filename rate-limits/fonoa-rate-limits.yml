@@ -1,0 +1,63 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: Fonoa
+providerId: fonoa
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+description: >
+  Fonoa's API is protected by an API Management Gateway (Azure APIM) that enforces
+  rate limiting to prevent DDoS attacks and excessive request volumes. Rapid requests
+  from the same IP address or subscription key may result in temporary blockage.
+  Specific numeric rate limits are not publicly documented; Fonoa recommends using
+  webhooks instead of polling to reduce API call frequency. A 429 HTTP status code
+  is returned when limits are exceeded.
+retryAfter:
+  header: Retry-After
+  description: >
+    When throttled with a 429 response, clients should wait before retrying.
+    The Retry-After header indicates the number of seconds to wait.
+throttled:
+  statusCode: 429
+  description: Too Many Requests — the subscription key or IP has exceeded the rate limit
+notes: >
+  Fonoa uses Azure API Management (APIM) with a subscription key model
+  (Ocp-Apim-Subscription-Key header). Rate limits are enforced per subscription key
+  and per IP address. Specific request-per-second or per-minute thresholds are not
+  publicly published and are negotiated at the enterprise contract level.
+  Clients are advised to implement exponential backoff and to prefer webhook-driven
+  architectures over continuous polling.
+limits:
+  - scope: subscription
+    metric: requests
+    limit: null
+    timeFrame: per_second
+    notes: >
+      Limit enforced per subscription key; exact value not publicly disclosed.
+      Exceeding the limit triggers a 429 response.
+  - scope: ip
+    metric: requests
+    limit: null
+    timeFrame: per_second
+    notes: >
+      Limit enforced per originating IP address to prevent DDoS attacks.
+      Spamming from the same IP results in temporary blockage.
+  - scope: subscription
+    metric: batch_validations
+    limit: null
+    timeFrame: per_request
+    notes: >
+      Batch TIN validation requests may contain multiple tax IDs in a single call.
+      Maximum batch size not publicly documented.
+headers:
+  - name: Ocp-Apim-Subscription-Key
+    description: API subscription key required on every request; rate limits enforced per key
+  - name: Retry-After
+    description: Seconds to wait before retrying after a 429 response
+environments:
+  - name: production
+    baseURL: https://api.fonoa.com
+  - name: sandbox
+    baseURL: https://sandbox.fonoa.com
+  - name: demo
+    baseURL: https://api-demo.fonoa.com
