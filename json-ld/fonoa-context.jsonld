@@ -1,0 +1,111 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "fonoa": "https://www.fonoa.com/vocab#",
+    "aid": "fonoa:aid",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "provider": {
+      "@id": "schema:provider",
+      "@type": "schema:Organization"
+    },
+    "Organization": "schema:Organization",
+    "WebAPI": "schema:WebAPI",
+    "TaxService": {
+      "@id": "fonoa:TaxService",
+      "@type": "schema:Service"
+    },
+    "taxIdValidation": "fonoa:taxIdValidation",
+    "taxCalculation": "fonoa:taxCalculation",
+    "eInvoicing": "fonoa:eInvoicing",
+    "transactionReporting": "fonoa:transactionReporting",
+    "onboarding": "fonoa:onboarding",
+    "webhooks": "fonoa:webhooks",
+    "country": "schema:addressCountry",
+    "jurisdiction": "fonoa:jurisdiction",
+    "taxRegime": "fonoa:taxRegime",
+    "tinValidation": "fonoa:tinValidation",
+    "batchValidation": "fonoa:batchValidation",
+    "instantLookup": "fonoa:instantLookup",
+    "vatValidation": "fonoa:vatValidation",
+    "gstValidation": "fonoa:gstValidation",
+    "indirectTax": "fonoa:indirectTax",
+    "taxRate": "fonoa:taxRate",
+    "marketplace": "fonoa:marketplace",
+    "supplier": "fonoa:supplier",
+    "customer": "fonoa:customer",
+    "transaction": "schema:Order",
+    "transactionId": "fonoa:transactionId",
+    "transactionDate": "schema:orderDate",
+    "currencyCode": "schema:currency",
+    "countryCode": "schema:addressCountry",
+    "lineItem": "schema:OrderItem",
+    "taxBreakdown": "fonoa:taxBreakdown",
+    "taxAmount": "fonoa:taxAmount",
+    "netAmount": "fonoa:netAmount",
+    "grossAmount": "fonoa:grossAmount",
+    "operationId": "fonoa:operationId",
+    "validationId": "fonoa:validationId",
+    "batchId": "fonoa:batchId",
+    "jobId": "fonoa:jobId",
+    "documentGeneration": "fonoa:documentGeneration",
+    "companyOnboarding": "fonoa:companyOnboarding",
+    "taxCredentials": "fonoa:taxCredentials",
+    "apiKey": "fonoa:apiKey",
+    "sandboxEnvironment": "fonoa:sandboxEnvironment",
+    "productionEnvironment": "fonoa:productionEnvironment",
+    "demoEnvironment": "fonoa:demoEnvironment"
+  },
+  "@type": "Organization",
+  "@id": "https://www.fonoa.com",
+  "name": "Fonoa",
+  "description": "Global indirect tax automation platform connecting the full indirect tax lifecycle on one platform across 100+ countries and jurisdictions.",
+  "url": "https://www.fonoa.com",
+  "sameAs": [
+    "https://github.com/Fonoa-Tech",
+    "https://www.linkedin.com/company/fonoa",
+    "https://twitter.com/Fonoa_HQ"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Fonoa API Products",
+    "itemListElement": [
+      {
+        "@type": "WebAPI",
+        "name": "Fonoa Validate API",
+        "description": "TIN validation across 120+ countries with instant and batch modes.",
+        "documentation": "https://docs.fonoa.com/reference/instant-lookup",
+        "url": "https://api.fonoa.com/lookup"
+      },
+      {
+        "@type": "WebAPI",
+        "name": "Fonoa Tax Engine API",
+        "description": "VAT, GST, and sales tax calculation across 100+ jurisdictions.",
+        "documentation": "https://docs.fonoa.com/reference/welcome-to-fonoa",
+        "url": "https://api.fonoa.com/tax"
+      },
+      {
+        "@type": "WebAPI",
+        "name": "Fonoa E-Invoicing API",
+        "description": "Unified e-invoicing lifecycle management compliant with local mandates.",
+        "documentation": "https://www.fonoa.com/platform/e-invoicing",
+        "url": "https://api.fonoa.com/invoicing"
+      },
+      {
+        "@type": "WebAPI",
+        "name": "Fonoa Onboarding API",
+        "description": "Register companies and individuals as transaction participants.",
+        "documentation": "https://docs.fonoa.com/reference/onboarding-v2",
+        "url": "https://api.fonoa.com/onboarding"
+      },
+      {
+        "@type": "WebAPI",
+        "name": "Fonoa Webhooks API",
+        "description": "Real-time event notifications for transaction status and compliance events.",
+        "documentation": "https://docs.fonoa.com/reference/welcome-to-fonoa",
+        "url": "https://api.fonoa.com/webhooks"
+      }
+    ]
+  }
+}

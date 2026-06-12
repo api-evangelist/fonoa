@@ -45,7 +45,7 @@ apis:
       - type: Documentation
         url: https://docs.fonoa.com/reference/instant-lookup
       - type: OpenAPI
-        url: https://docs.fonoa.com/llms.txt
+        url: openapi/fonoa-validate-openapi.yml
 
   - aid: fonoa:tax-engine-api
     name: Fonoa Tax Engine API
@@ -63,6 +63,8 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.fonoa.com/reference/welcome-to-fonoa
+      - type: OpenAPI
+        url: openapi/fonoa-tax-engine-openapi.yml
 
   - aid: fonoa:e-invoicing-api
     name: Fonoa E-Invoicing API
@@ -81,6 +83,8 @@ apis:
     properties:
       - type: Documentation
         url: https://www.fonoa.com/platform/e-invoicing
+      - type: OpenAPI
+        url: openapi/fonoa-e-invoicing-openapi.yml
 
   - aid: fonoa:onboarding-api
     name: Fonoa Onboarding API
@@ -97,6 +101,8 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.fonoa.com/reference/onboarding-v2
+      - type: OpenAPI
+        url: openapi/fonoa-onboarding-openapi.yml
 
   - aid: fonoa:webhooks-api
     name: Fonoa Webhooks API
@@ -143,6 +149,8 @@ common:
     url: rate-limits/fonoa-rate-limits.yml
   - type: FinOps
     url: finops/fonoa-finops.yml
+  - type: JSONLDContext
+    url: json-ld/fonoa-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
