@@ -9,7 +9,7 @@ description: >
   and Remote.com rely on Fonoa to automate and manage their global indirect tax obligations
   through a single API integration.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Tax
   - VAT
