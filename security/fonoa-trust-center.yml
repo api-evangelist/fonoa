@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.fonoa.com/resources/security
+url: https://www.fonoa.com/resources/security
+certifications:
+- GDPR
+evidence:
+- source: https://www.fonoa.com/resources/security
+  keywords:
+  - trust center
+  - gdpr

@@ -121,6 +121,14 @@ apis:
         url: https://docs.fonoa.com/reference/welcome-to-fonoa
 
 common:
+  - type: TrustCenter
+    url: security/fonoa-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/fonoa-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/fonoa-domain-security.yml
+  - type: Authentication
+    url: authentication/fonoa-authentication.yml
   - type: Website
     url: https://www.fonoa.com
   - type: Documentation
