@@ -121,6 +121,8 @@ apis:
         url: https://docs.fonoa.com/reference/welcome-to-fonoa
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/fonoa-agentic-access.yml
   - type: TrustCenter
     url: security/fonoa-trust-center.yml
   - type: VulnerabilityDisclosure
