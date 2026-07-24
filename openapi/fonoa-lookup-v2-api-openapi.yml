@@ -1,33 +1,31 @@
 openapi: 3.0.0
 info:
-  title: Fonoa Validate API
-  description: >
-    Tax Identification Number (TIN) validation API supporting instant lookups and batch
-    validation across 120+ countries. Enables real-time VAT/GST ID verification, TIN
-    search by business name, result polling, and cancellation of pending validations.
-  contact:
-    name: Fonoa Support
-    url: https://www.fonoa.com/
-    email: support@fonoa.com
-  version: '1.0'
+  title: Fonoa E-Invoicing Lookup V2 API
+  description: 'Unified e-invoicing API that manages the full transaction lifecycle including submitting, adjusting, crediting, and canceling e-invoices in compliance with local mandates across multiple countries. Supports backfilling previously reported transactions and retrieving transaction history and status.
+
+    '
+  version: 1.0.0
 servers:
-  - url: https://api-demo.fonoa.com
-    description: Fonoa API demo environment
-  - url: https://sandbox.fonoa.com/
-    description: Fonoa API sandbox environment
-  - url: https://api.fonoa.com
-    description: Fonoa API production (live) environment
+- url: https://api-demo.fonoa.com
+  description: Fonoa API demo environment
+- url: https://sandbox.fonoa.com/
+  description: Fonoa API sandbox environment
+- url: https://api.fonoa.com
+  description: Fonoa API production (live) environment
+security:
+- ApiKeyAuth: []
+tags:
+- name: Lookup V2
 paths:
   /lookup/v2/single-validations:
     post:
       summary: Request a single validation
-      description: >
-        Submit a single Tax Identification Number (TIN) for validation. Supports instant
-        lookup and cached result retrieval across 120+ countries. The API returns either
-        an immediate response (200) or an accepted async response (202).
+      description: 'Submit a single Tax Identification Number (TIN) for validation. Supports instant lookup and cached result retrieval across 120+ countries. The API returns either an immediate response (200) or an accepted async response (202).
+
+        '
       operationId: RequestavalidationV2
       tags:
-        - Lookup V2
+      - Lookup V2
       requestBody:
         required: true
         content:
@@ -36,17 +34,17 @@ paths:
               $ref: '#/components/schemas/LookupTinValidationRequest'
       responses:
         '200':
-          description: >
-            Immediate response for validations. Provides format validity details.
-            Also returned for TINs with invalid format or checksum digits.
+          description: 'Immediate response for validations. Provides format validity details. Also returned for TINs with invalid format or checksum digits.
+
+            '
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LookupValidationImmediateResponseV2'
         '202':
-          description: >
-            The validation process has started. Fetch results from the resource provided
-            in the response or use webhooks for status updates.
+          description: 'The validation process has started. Fetch results from the resource provided in the response or use webhooks for status updates.
+
+            '
           content:
             application/json:
               schema:
@@ -76,13 +74,12 @@ paths:
   /lookup/v2/batch-validations:
     post:
       summary: Request a batch validation
-      description: >
-        Submit multiple Tax Identification Numbers (TINs) for batch validation.
-        Returns immediate results for TINs with invalid format; async processing
-        for others with polling via the batch_validation_result_url.
+      description: 'Submit multiple Tax Identification Numbers (TINs) for batch validation. Returns immediate results for TINs with invalid format; async processing for others with polling via the batch_validation_result_url.
+
+        '
       operationId: RequestbatchvalidationV2
       tags:
-        - Lookup V2
+      - Lookup V2
       requestBody:
         required: true
         content:
@@ -90,7 +87,7 @@ paths:
             schema:
               type: object
               required:
-                - validations
+              - validations
               properties:
                 batch_name:
                   type: string
@@ -120,12 +117,12 @@ paths:
                     batch_id: 7e7f4459-5871-47a1-af3d-364df9c31fe0
                     batch_name: batch-2022-12-25-09-07-54
                     validations:
-                      - validation_id: 3dc8b6d9-57af-4afb-9184-ef510be3f388
-                        tax_identification_number: GB830930346
-                        country_iso_code: gb
-                        format: valid
-                        requested_at: '2022-12-28T14:55:11.575Z'
-                        is_business: unknown
+                    - validation_id: 3dc8b6d9-57af-4afb-9184-ef510be3f388
+                      tax_identification_number: GB830930346
+                      country_iso_code: gb
+                      format: valid
+                      requested_at: '2022-12-28T14:55:11.575Z'
+                      is_business: unknown
                     requested_at: '2021-03-25T09:37:41.649Z'
                     status: running
                     batch_validation_result_url: https://api-demo.fonoa.com/lookup/v2/batch-validations/7e7f4459-5871-47a1-af3d-364df9c31fe0
@@ -149,14 +146,14 @@ paths:
       description: Poll for the result of a previously submitted batch validation.
       operationId: GetresultofbatchvalidationV2
       tags:
-        - Lookup V2
+      - Lookup V2
       parameters:
-        - name: batch_id
-          in: path
-          required: true
-          description: The batch validation ID returned from the POST request.
-          schema:
-            type: string
+      - name: batch_id
+        in: path
+        required: true
+        description: The batch validation ID returned from the POST request.
+        schema:
+          type: string
       responses:
         '200':
           description: Batch validation results.
@@ -173,14 +170,14 @@ paths:
       description: Cancel a pending batch validation.
       operationId: CancelbatchvalidationV2
       tags:
-        - Lookup V2
+      - Lookup V2
       parameters:
-        - name: batch_id
-          in: path
-          required: true
-          description: The batch validation ID to cancel.
-          schema:
-            type: string
+      - name: batch_id
+        in: path
+        required: true
+        description: The batch validation ID to cancel.
+        schema:
+          type: string
       responses:
         '204':
           description: Batch validation successfully cancelled.
@@ -194,14 +191,14 @@ paths:
       description: Retrieve the result of a previously submitted single TIN validation.
       operationId: GetresultofvalidationV2
       tags:
-        - Lookup V2
+      - Lookup V2
       parameters:
-        - name: validation_id
-          in: path
-          required: true
-          description: The validation ID returned from the POST request.
-          schema:
-            type: string
+      - name: validation_id
+        in: path
+        required: true
+        description: The validation ID returned from the POST request.
+        schema:
+          type: string
       responses:
         '200':
           description: Validation result.
@@ -218,14 +215,14 @@ paths:
       description: Delete the result of a completed single TIN validation.
       operationId: DeleteresultofvalidationV2
       tags:
-        - Lookup V2
+      - Lookup V2
       parameters:
-        - name: validation_id
-          in: path
-          required: true
-          description: The validation ID to delete.
-          schema:
-            type: string
+      - name: validation_id
+        in: path
+        required: true
+        description: The validation ID to delete.
+        schema:
+          type: string
       responses:
         '204':
           description: Validation result successfully deleted.
@@ -239,7 +236,7 @@ paths:
       description: Search for a Tax Identification Number by business name and country.
       operationId: RequestTINsearch
       tags:
-        - Lookup V2
+      - Lookup V2
       requestBody:
         required: true
         content:
@@ -247,8 +244,8 @@ paths:
             schema:
               type: object
               required:
-                - country_iso_code
-                - name
+              - country_iso_code
+              - name
               properties:
                 country_iso_code:
                   type: string
@@ -272,8 +269,8 @@ components:
     LookupTinValidationRequest:
       type: object
       required:
-        - country_iso_code
-        - tax_identification_number
+      - country_iso_code
+      - tax_identification_number
       properties:
         country_iso_code:
           type: string
@@ -289,121 +286,6 @@ components:
           type: boolean
           description: Set to true to attempt returning a result from the Instant Lookup cache.
           default: false
-    LookupAdditionalParametersV2:
-      type: object
-      description: Additional country-specific parameters for TIN validation.
-      properties:
-        name:
-          type: string
-          description: Business name for fuzzy matching.
-          example: teamwear
-        address:
-          type: string
-          description: Business address for fuzzy matching.
-          example: Wildflower 22 Belfast
-    LookupValidationImmediateResponseV2:
-      type: object
-      properties:
-        validation_id:
-          type: string
-          description: Unique identifier for this validation request.
-          example: 3dc8b6d9-57af-4afb-9184-ef510be3f388
-        tax_identification_number:
-          type: string
-          description: The TIN that was submitted for validation.
-          example: GB830930346
-        country_iso_code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: gb
-        format:
-          type: string
-          description: Whether the TIN format is valid or invalid.
-          enum:
-            - valid
-            - invalid
-        requested_at:
-          type: string
-          format: date-time
-          description: Timestamp when the validation was requested.
-          example: '2022-12-28T14:55:11.575Z'
-        is_business:
-          type: string
-          description: Whether the TIN belongs to a business entity.
-          enum:
-            - 'yes'
-            - 'no'
-            - unknown
-        status:
-          type: string
-          description: Current status of the validation.
-          enum:
-            - completed
-            - running
-            - failed
-        result_url:
-          type: string
-          format: uri
-          description: URL to poll for the validation result.
-        fuzzy_matching:
-          type: object
-          description: Fuzzy matching results for name and address.
-          properties:
-            name:
-              type: string
-              description: Business name match result.
-              example: teamwear
-            address:
-              type: string
-              description: Business address match result.
-              example: Wildflower 22 Belfast
-        error_details:
-          $ref: '#/components/schemas/LookupErrorDetail'
-        business_name:
-          type: string
-          description: Registered business name associated with the TIN.
-        business_address:
-          type: string
-          description: Registered business address associated with the TIN.
-    LookupBatchValidationResponse:
-      type: object
-      required:
-        - batch_id
-        - batch_name
-        - validations
-        - requested_at
-        - status
-        - batch_validation_result_url
-      properties:
-        batch_id:
-          type: string
-          description: Unique identifier for the batch validation.
-          example: bd5fa7cc-3597-454e-86fb-a94b79514726
-        batch_name:
-          type: string
-          description: Name of the batch validation.
-          example: batch-2022-12-25-09-07-54
-        validations:
-          type: array
-          description: List of individual validation results.
-          items:
-            $ref: '#/components/schemas/LookupValidationImmediateResponseV2'
-        requested_at:
-          type: string
-          format: date-time
-          description: Timestamp when the batch was requested.
-          example: '2022-05-19T13:03:44.667Z'
-        status:
-          type: string
-          description: Current status of the batch.
-          enum:
-            - running
-            - completed
-        batch_validation_result_url:
-          type: string
-          format: uri
-          description: URL to poll for batch results.
-          example: https://api-demo.fonoa.com/lookup/v2/batch-validations/bd5fa7cc-3597-454e-86fb-a94b79514726
     LookupErrorResponseV2:
       type: object
       properties:
@@ -428,13 +310,123 @@ components:
         field:
           type: string
           description: The field that caused the error, if applicable.
+    LookupAdditionalParametersV2:
+      type: object
+      description: Additional country-specific parameters for TIN validation.
+      properties:
+        name:
+          type: string
+          description: Business name for fuzzy matching.
+          example: teamwear
+        address:
+          type: string
+          description: Business address for fuzzy matching.
+          example: Wildflower 22 Belfast
+    LookupBatchValidationResponse:
+      type: object
+      required:
+      - batch_id
+      - batch_name
+      - validations
+      - requested_at
+      - status
+      - batch_validation_result_url
+      properties:
+        batch_id:
+          type: string
+          description: Unique identifier for the batch validation.
+          example: bd5fa7cc-3597-454e-86fb-a94b79514726
+        batch_name:
+          type: string
+          description: Name of the batch validation.
+          example: batch-2022-12-25-09-07-54
+        validations:
+          type: array
+          description: List of individual validation results.
+          items:
+            $ref: '#/components/schemas/LookupValidationImmediateResponseV2'
+        requested_at:
+          type: string
+          format: date-time
+          description: Timestamp when the batch was requested.
+          example: '2022-05-19T13:03:44.667Z'
+        status:
+          type: string
+          description: Current status of the batch.
+          enum:
+          - running
+          - completed
+        batch_validation_result_url:
+          type: string
+          format: uri
+          description: URL to poll for batch results.
+          example: https://api-demo.fonoa.com/lookup/v2/batch-validations/bd5fa7cc-3597-454e-86fb-a94b79514726
+    LookupValidationImmediateResponseV2:
+      type: object
+      properties:
+        validation_id:
+          type: string
+          description: Unique identifier for this validation request.
+          example: 3dc8b6d9-57af-4afb-9184-ef510be3f388
+        tax_identification_number:
+          type: string
+          description: The TIN that was submitted for validation.
+          example: GB830930346
+        country_iso_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: gb
+        format:
+          type: string
+          description: Whether the TIN format is valid or invalid.
+          enum:
+          - valid
+          - invalid
+        requested_at:
+          type: string
+          format: date-time
+          description: Timestamp when the validation was requested.
+          example: '2022-12-28T14:55:11.575Z'
+        is_business:
+          type: string
+          description: Whether the TIN belongs to a business entity.
+          enum:
+          - 'yes'
+          - 'no'
+          - unknown
+        status:
+          type: string
+          description: Current status of the validation.
+          enum:
+          - completed
+          - running
+          - failed
+        result_url:
+          type: string
+          format: uri
+          description: URL to poll for the validation result.
+        fuzzy_matching:
+          type: object
+          description: Fuzzy matching results for name and address.
+          properties:
+            name:
+              type: string
+              description: Business name match result.
+              example: teamwear
+            address:
+              type: string
+              description: Business address match result.
+              example: Wildflower 22 Belfast
+        error_details:
+          $ref: '#/components/schemas/LookupErrorDetail'
+        business_name:
+          type: string
+          description: Registered business name associated with the TIN.
+        business_address:
+          type: string
+          description: Registered business address associated with the TIN.
   securitySchemes:
-    Ocp-Apim-Subscription-Key:
+    ApiKeyAuth:
       type: apiKey
-      description: API Subscription Key
-      name: Ocp-Apim-Subscription-Key
       in: header
-security:
-  - Ocp-Apim-Subscription-Key: []
-tags:
-  - name: Lookup V2
+      name: Ocp-Apim-Subscription-Key

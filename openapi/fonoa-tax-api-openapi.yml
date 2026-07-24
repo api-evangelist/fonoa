@@ -1,34 +1,31 @@
 openapi: 3.0.0
 info:
-  title: Fonoa Tax Engine API
-  description: >
-    Tax calculation API that determines applicable VAT, GST, and sales tax rates for
-    transactions across 100+ jurisdictions. Supports B2C and marketplace scenarios with
-    real-time tax determination and the ability to view and commit calculations.
-  contact:
-    name: Fonoa Support
-    url: https://www.fonoa.com/
-    email: support@fonoa.com
-  version: '1.0'
+  title: Fonoa E-Invoicing Lookup V2 Tax API
+  description: 'Unified e-invoicing API that manages the full transaction lifecycle including submitting, adjusting, crediting, and canceling e-invoices in compliance with local mandates across multiple countries. Supports backfilling previously reported transactions and retrieving transaction history and status.
+
+    '
+  version: 1.0.0
 servers:
-  - url: https://api-demo.fonoa.com
-    description: Fonoa API demo environment
-  - url: https://sandbox.fonoa.com/
-    description: Fonoa API sandbox environment
-  - url: https://api.fonoa.com
-    description: Fonoa API production (live) environment
+- url: https://api-demo.fonoa.com
+  description: Fonoa API demo environment
+- url: https://sandbox.fonoa.com/
+  description: Fonoa API sandbox environment
+- url: https://api.fonoa.com
+  description: Fonoa API production (live) environment
+security:
+- ApiKeyAuth: []
+tags:
+- name: Tax
 paths:
   /tax/v2/calculations:
     post:
       summary: Request a calculation
-      description: >
-        In the one example, you can see a tax determination for a service provided directly
-        to a consumer not through a marketplace. The other example shows a tax determination
-        for a transaction that takes place between a third party seller and a consumer through
-        a marketplace.
+      description: 'In the one example, you can see a tax determination for a service provided directly to a consumer not through a marketplace. The other example shows a tax determination for a transaction that takes place between a third party seller and a consumer through a marketplace.
+
+        '
       operationId: Requestataxrate
       tags:
-        - Tax
+      - Tax
       requestBody:
         content:
           application/json:
@@ -58,11 +55,11 @@ paths:
                     description: a transaction for a digital service
                     through_marketplace: true
                     items:
-                      - id: '1'
-                        unit_price: 100
-                        tax_category_code: fs_0302003000
-                        quantity: 1
-                        description: a digital service
+                    - id: '1'
+                      unit_price: 100
+                      tax_category_code: fs_0302003000
+                      quantity: 1
+                      description: a digital service
               direct_sale:
                 summary: Direct sale example (non-marketplace)
                 value:
@@ -77,11 +74,11 @@ paths:
                     price_includes_tax: true
                     date: '2022-06-20T13:12:31+08:00'
                     items:
-                      - id: '1'
-                        unit_price: 100
-                        tax_category_code: fs_0302003000
-                        quantity: 1
-                        description: an electronic service
+                    - id: '1'
+                      unit_price: 100
+                      tax_category_code: fs_0302003000
+                      quantity: 1
+                      description: an electronic service
       responses:
         '200':
           description: OK
@@ -107,16 +104,16 @@ components:
       type: object
       title: TaxCalculatePOSTrequest
       required:
-        - supplier
-        - customer
-        - transaction
+      - supplier
+      - customer
+      - transaction
       properties:
         supplier:
           type: object
           description: The supplier object contains parameters related to the supplier/seller for a given transaction.
           required:
-            - taxable
-            - country
+          - taxable
+          - country
           properties:
             taxable:
               type: boolean
@@ -141,8 +138,8 @@ components:
           type: object
           description: The customer object contains parameters related to the customer/buyer for a given transaction.
           required:
-            - taxable
-            - country
+          - taxable
+          - country
           properties:
             taxable:
               type: boolean
@@ -172,8 +169,8 @@ components:
           type: object
           description: Parameters related to the order/transaction in general.
           required:
-            - date
-            - items
+          - date
+          - items
           properties:
             id:
               type: string
@@ -206,9 +203,9 @@ components:
               items:
                 type: object
                 required:
-                  - id
-                  - unit_price
-                  - tax_category_code
+                - id
+                - unit_price
+                - tax_category_code
                 properties:
                   id:
                     type: string
@@ -237,13 +234,28 @@ components:
                     maxLength: 128
                     description: Description for the line item.
                     example: a digital service
+    TaxDetermineResponseError:
+      title: TaxCalculateResponseError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              message:
+                type: string
+              field:
+                type: string
     TaxDetermineResponse:
       type: object
       required:
-        - total_gross
-        - total_net
-        - total_indirect_tax_amount
-        - items
+      - total_gross
+      - total_net
+      - total_indirect_tax_amount
+      - items
       properties:
         total_gross:
           type: number
@@ -262,13 +274,13 @@ components:
           items:
             type: object
             required:
-              - id
-              - unit_price
-              - gross_amount
-              - net_amount
-              - indirect_tax_amount
-              - effective_indirect_tax_rate
-              - tax_breakdown
+            - id
+            - unit_price
+            - gross_amount
+            - net_amount
+            - indirect_tax_amount
+            - effective_indirect_tax_rate
+            - tax_breakdown
             properties:
               id:
                 type: string
@@ -315,13 +327,13 @@ components:
                 items:
                   type: object
                   required:
-                    - type
-                    - name
-                    - amount
-                    - rate
-                    - remit
-                    - country
-                    - tax_region
+                  - type
+                  - name
+                  - amount
+                  - rate
+                  - remit
+                  - country
+                  - tax_region
                   properties:
                     type:
                       type: string
@@ -350,33 +362,13 @@ components:
                     tax_region:
                       type: string
                       description: Tax region of the applied tax.
-                      example: on
+                      example: true
                     taxable_amount:
                       type: number
                       description: Amount on which the tax was applied.
                       example: 80
-    TaxDetermineResponseError:
-      title: TaxCalculateResponseError
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              message:
-                type: string
-              field:
-                type: string
   securitySchemes:
-    Ocp-Apim-Subscription-Key:
+    ApiKeyAuth:
       type: apiKey
-      description: API Subscription Key
-      name: Ocp-Apim-Subscription-Key
       in: header
-security:
-  - Ocp-Apim-Subscription-Key: []
-tags:
-  - name: Tax
+      name: Ocp-Apim-Subscription-Key
