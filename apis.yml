@@ -9,7 +9,20 @@ description: >
   and Remote.com rely on Fonoa to automate and manage their global indirect tax obligations
   through a single API integration.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fonoa.png
 tags:
   - Tax
   - VAT
@@ -28,98 +41,92 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-  - aid: fonoa:validate-api
-    name: Fonoa Validate API
-    description: >
-      Tax Identification Number (TIN) validation API supporting instant lookups and batch
-      validation across 120+ countries. Enables real-time VAT/GST ID verification, TIN
-      search by business name, result polling, and cancellation of pending validations.
-    humanURL: https://docs.fonoa.com/reference/instant-lookup
-    baseURL: https://api.fonoa.com/validate
-    tags:
-      - Tax ID Validation
-      - VAT
-      - TIN
-      - Batch Validation
-    properties:
-      - type: Documentation
-        url: https://docs.fonoa.com/reference/instant-lookup
-      - type: OpenAPI
-        url: openapi/fonoa-validate-openapi.yml
-
-  - aid: fonoa:tax-engine-api
-    name: Fonoa Tax Engine API
-    description: >
-      Tax calculation API that determines applicable VAT, GST, and sales tax rates for
-      transactions across 100+ jurisdictions. Supports B2C and marketplace scenarios with
-      real-time tax determination and the ability to view and commit calculations.
-    humanURL: https://docs.fonoa.com/reference/welcome-to-fonoa
-    baseURL: https://api.fonoa.com/tax
-    tags:
-      - Tax Calculation
-      - VAT
-      - GST
-      - Sales Tax
-    properties:
-      - type: Documentation
-        url: https://docs.fonoa.com/reference/welcome-to-fonoa
-      - type: OpenAPI
-        url: openapi/fonoa-tax-engine-openapi.yml
-
-  - aid: fonoa:e-invoicing-api
-    name: Fonoa E-Invoicing API
-    description: >
-      Unified e-invoicing API that manages the full transaction lifecycle including submitting,
-      adjusting, crediting, and canceling e-invoices in compliance with local mandates across
-      multiple countries. Supports backfilling previously reported transactions and retrieving
-      transaction history and status.
-    humanURL: https://www.fonoa.com/platform/e-invoicing
-    baseURL: https://api.fonoa.com/invoicing
-    tags:
-      - E-Invoicing
-      - Invoice Generation
-      - Tax Compliance
-      - Digital Reporting
-    properties:
-      - type: Documentation
-        url: https://www.fonoa.com/platform/e-invoicing
-      - type: OpenAPI
-        url: openapi/fonoa-e-invoicing-openapi.yml
-
-  - aid: fonoa:onboarding-api
-    name: Fonoa Onboarding API
-    description: >
-      API for registering companies and individuals as transaction participants (suppliers
-      and customers) in Fonoa's platform. Supports creating, updating, deleting, and
-      retrieving company and individual participant profiles required for tax compliance workflows.
-    humanURL: https://docs.fonoa.com/reference/onboarding-v2
-    baseURL: https://api.fonoa.com/onboarding
-    tags:
-      - Onboarding
-      - Company Registration
-      - Participant Management
-    properties:
-      - type: Documentation
-        url: https://docs.fonoa.com/reference/onboarding-v2
-      - type: OpenAPI
-        url: openapi/fonoa-onboarding-openapi.yml
-
-  - aid: fonoa:webhooks-api
-    name: Fonoa Webhooks API
-    description: >
-      Webhooks management API for configuring real-time event notifications from Fonoa's
-      platform. Recommended over polling for transaction status updates and e-invoicing
-      compliance events.
-    humanURL: https://docs.fonoa.com/reference/welcome-to-fonoa
-    baseURL: https://api.fonoa.com/webhooks
-    tags:
-      - Webhooks
-      - Event Notifications
-      - Real-Time
-    properties:
-      - type: Documentation
-        url: https://docs.fonoa.com/reference/welcome-to-fonoa
-
+- aid: fonoa:webhooks-api
+  name: Fonoa Webhooks API
+  description: >
+    Webhooks management API for configuring real-time event notifications from Fonoa's platform. Recommended
+    over polling for transaction status updates and e-invoicing compliance events.
+  humanURL: https://docs.fonoa.com/reference/welcome-to-fonoa
+  baseURL: https://api.fonoa.com/webhooks
+  tags:
+  - Webhooks
+  - Event Notifications
+  - Real-Time
+  properties:
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/welcome-to-fonoa
+- aid: fonoa:fonoa-lookup-v2-api
+  name: Fonoa Lookup V2 API
+  description: The Lookup V2 API from Fonoa — 5 operation(s) for lookup v2.
+  humanURL: https://docs.fonoa.com/reference/instant-lookup
+  baseURL: https://api.fonoa.com/validate
+  tags:
+  - Lookup V2
+  properties:
+  - type: OpenAPI
+    url: openapi/fonoa-lookup-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/instant-lookup
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/welcome-to-fonoa
+  - type: Documentation
+    url: https://www.fonoa.com/platform/e-invoicing
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/onboarding-v2
+- aid: fonoa:fonoa-onboarding-api
+  name: Fonoa Onboarding API
+  description: The Onboarding API from Fonoa — 1 operation(s) for onboarding.
+  humanURL: https://docs.fonoa.com/reference/instant-lookup
+  baseURL: https://api.fonoa.com/validate
+  tags:
+  - Onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/fonoa-onboarding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/instant-lookup
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/welcome-to-fonoa
+  - type: Documentation
+    url: https://www.fonoa.com/platform/e-invoicing
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/onboarding-v2
+- aid: fonoa:fonoa-tax-api
+  name: Fonoa Tax API
+  description: The Tax API from Fonoa — 1 operation(s) for tax.
+  humanURL: https://docs.fonoa.com/reference/instant-lookup
+  baseURL: https://api.fonoa.com/validate
+  tags:
+  - Tax
+  properties:
+  - type: OpenAPI
+    url: openapi/fonoa-tax-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/instant-lookup
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/welcome-to-fonoa
+  - type: Documentation
+    url: https://www.fonoa.com/platform/e-invoicing
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/onboarding-v2
+- aid: fonoa:fonoa-transactions-api
+  name: Fonoa Transactions API
+  description: The Transactions API from Fonoa — 1 operation(s) for transactions.
+  humanURL: https://docs.fonoa.com/reference/instant-lookup
+  baseURL: https://api.fonoa.com/validate
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/fonoa-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/instant-lookup
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/welcome-to-fonoa
+  - type: Documentation
+    url: https://www.fonoa.com/platform/e-invoicing
+  - type: Documentation
+    url: https://docs.fonoa.com/reference/onboarding-v2
 common:
   - type: AgenticAccess
     url: agentic-access/fonoa-agentic-access.yml
