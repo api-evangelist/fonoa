@@ -1,0 +1,382 @@
+openapi: 3.0.0
+info:
+  title: Fonoa Tax Engine API
+  description: >
+    Tax calculation API that determines applicable VAT, GST, and sales tax rates for
+    transactions across 100+ jurisdictions. Supports B2C and marketplace scenarios with
+    real-time tax determination and the ability to view and commit calculations.
+  contact:
+    name: Fonoa Support
+    url: https://www.fonoa.com/
+    email: support@fonoa.com
+  version: '1.0'
+servers:
+  - url: https://api-demo.fonoa.com
+    description: Fonoa API demo environment
+  - url: https://sandbox.fonoa.com/
+    description: Fonoa API sandbox environment
+  - url: https://api.fonoa.com
+    description: Fonoa API production (live) environment
+paths:
+  /tax/v2/calculations:
+    post:
+      summary: Request a calculation
+      description: >
+        In the one example, you can see a tax determination for a service provided directly
+        to a consumer not through a marketplace. The other example shows a tax determination
+        for a transaction that takes place between a third party seller and a consumer through
+        a marketplace.
+      operationId: Requestataxrate
+      tags:
+        - Tax
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxDetermineRequest'
+            examples:
+              marketplace_transaction:
+                summary: Marketplace transaction
+                value:
+                  supplier:
+                    taxable: true
+                    country: ca
+                    tax_region: bc
+                    registered_in_customer_country: true
+                    reference_id: supplier123
+                  customer:
+                    taxable: true
+                    country: it
+                  marketplace:
+                    registered_in_customer_country: true
+                    calculate_for_unregistered_customer_countries: true
+                    is_user_marketplace: true
+                  transaction:
+                    id: order7898
+                    price_includes_tax: true
+                    date: '2022-06-15T13:40:31+10:00'
+                    description: a transaction for a digital service
+                    through_marketplace: true
+                    items:
+                      - id: '1'
+                        unit_price: 100
+                        tax_category_code: fs_0302003000
+                        quantity: 1
+                        description: a digital service
+              direct_sale:
+                summary: Direct sale example (non-marketplace)
+                value:
+                  supplier:
+                    taxable: true
+                    country: us
+                    registered_in_customer_country: true
+                  customer:
+                    taxable: false
+                    country: ro
+                  transaction:
+                    price_includes_tax: true
+                    date: '2022-06-20T13:12:31+08:00'
+                    items:
+                      - id: '1'
+                        unit_price: 100
+                        tax_category_code: fs_0302003000
+                        quantity: 1
+                        description: an electronic service
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxDetermineResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxDetermineResponseError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxDetermineResponseError'
+components:
+  schemas:
+    TaxDetermineRequest:
+      type: object
+      title: TaxCalculatePOSTrequest
+      required:
+        - supplier
+        - customer
+        - transaction
+      properties:
+        supplier:
+          type: object
+          description: The supplier object contains parameters related to the supplier/seller for a given transaction.
+          required:
+            - taxable
+            - country
+          properties:
+            taxable:
+              type: boolean
+              description: Defines whether the supplier is taxable or not in the supplier country.
+            country:
+              type: string
+              minLength: 1
+              description: Supplier's country code expressed in ISO 3166-1 alpha-2 format.
+              example: ca
+            tax_region:
+              type: string
+              description: Supplier's region code (e.g., bc for British Columbia).
+              example: bc
+            registered_in_customer_country:
+              type: boolean
+              description: Specifies whether the supplier is tax registered in the customer country.
+            reference_id:
+              type: string
+              description: Unique identifier for a third-party supplier in marketplace scenarios.
+              example: supplier123
+        customer:
+          type: object
+          description: The customer object contains parameters related to the customer/buyer for a given transaction.
+          required:
+            - taxable
+            - country
+          properties:
+            taxable:
+              type: boolean
+              description: Defines whether the customer is taxable or not in the customer country.
+            country:
+              type: string
+              minLength: 1
+              description: Customer's country code expressed in ISO 3166-1 alpha-2 format.
+              example: it
+            tax_region:
+              type: string
+              description: Customer's region code. Only relevant for certain countries.
+        marketplace:
+          type: object
+          description: Parameters related to the marketplace for marketplace transactions.
+          properties:
+            registered_in_customer_country:
+              type: boolean
+              description: Indicates whether the marketplace is tax registered in the customer country.
+            calculate_for_unregistered_customer_countries:
+              type: boolean
+              description: Whether to receive a calculation even if not registered in the customer country.
+            is_user_marketplace:
+              type: boolean
+              description: Indicates whether a transaction is processed from a marketplace's perspective.
+        transaction:
+          type: object
+          description: Parameters related to the order/transaction in general.
+          required:
+            - date
+            - items
+          properties:
+            id:
+              type: string
+              minLength: 1
+              maxLength: 36
+              description: Unique identifier for the transaction.
+              example: order7898
+            price_includes_tax:
+              type: boolean
+              description: Specifies whether the prices include indirect taxes.
+              default: true
+            date:
+              type: string
+              format: date-time
+              description: Date of the transaction in ISO8601 format.
+              example: '2022-06-15T13:40:31+10:00'
+            description:
+              type: string
+              maxLength: 128
+              description: Description for the transaction.
+              example: a transaction for a digital service
+            through_marketplace:
+              type: boolean
+              description: Specifies whether the transaction takes place through a marketplace.
+            items:
+              type: array
+              uniqueItems: true
+              minItems: 1
+              description: Items being transacted with their details.
+              items:
+                type: object
+                required:
+                  - id
+                  - unit_price
+                  - tax_category_code
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                    maxLength: 32
+                    description: Unique id per line item.
+                    example: '1'
+                  unit_price:
+                    type: number
+                    description: Item amount/value.
+                    exclusiveMinimum: true
+                    minimum: 0
+                    example: 100
+                  tax_category_code:
+                    type: string
+                    minLength: 1
+                    description: Code specifying the category of the item being transacted.
+                    example: fs_0302003000
+                  quantity:
+                    type: number
+                    minimum: 1
+                    default: 1
+                    description: Quantity for this line item.
+                  description:
+                    type: string
+                    maxLength: 128
+                    description: Description for the line item.
+                    example: a digital service
+    TaxDetermineResponse:
+      type: object
+      required:
+        - total_gross
+        - total_net
+        - total_indirect_tax_amount
+        - items
+      properties:
+        total_gross:
+          type: number
+          description: The gross amount of the entire transaction excluding withholding taxes.
+        total_net:
+          type: number
+          description: The net amount of the entire transaction.
+        total_indirect_tax_amount:
+          type: number
+          description: The aggregation of all indirect tax amounts for the transaction.
+        items:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          description: Tax breakdown per item in the transaction.
+          items:
+            type: object
+            required:
+              - id
+              - unit_price
+              - gross_amount
+              - net_amount
+              - indirect_tax_amount
+              - effective_indirect_tax_rate
+              - tax_breakdown
+            properties:
+              id:
+                type: string
+                minLength: 1
+                description: The id provided in the API request for this item.
+              quantity:
+                type: integer
+                description: The quantity provided in the API request for this item.
+              unit_price:
+                type: number
+                format: float
+                description: The unit_price provided in the API request for this item.
+              supplier_taxable:
+                type: boolean
+                description: Whether the supplier is taxable.
+              tax_logic_label:
+                type: string
+                description: A string identifying the tax logic applied for that transaction.
+              gross_amount:
+                type: number
+                description: Gross amount for the item multiplied by quantity.
+              net_amount:
+                type: number
+                description: Net amount for the item stripped of indirect taxes.
+              indirect_tax_amount:
+                type: number
+                description: Aggregation of tax amounts from all indirect taxes applied.
+              effective_indirect_tax_rate:
+                type: number
+                description: Effective indirect tax rate for the item.
+              unit:
+                type: object
+                description: Gross, net, and indirect tax amounts at unit level (quantity=1).
+                properties:
+                  net_amount:
+                    type: number
+                  gross_amount:
+                    type: number
+                  indirect_tax_amount:
+                    type: number
+              tax_breakdown:
+                type: array
+                description: Detailed taxes that apply for this item.
+                items:
+                  type: object
+                  required:
+                    - type
+                    - name
+                    - amount
+                    - rate
+                    - remit
+                    - country
+                    - tax_region
+                  properties:
+                    type:
+                      type: string
+                      description: Type of tax applied (indirect or withholding).
+                      example: indirect
+                    name:
+                      type: string
+                      description: Specific name of the tax applied.
+                      example: IVA
+                    amount:
+                      type: number
+                      description: Tax amount applied, multiplied by quantity.
+                      example: 20
+                    rate:
+                      type: number
+                      description: Tax rate applied.
+                      example: 0.25
+                    remit:
+                      type: number
+                      description: Amount to be remitted to the government.
+                      example: 20
+                    country:
+                      type: string
+                      description: Country of the applied tax in ISO 3166-1 alpha-2 format.
+                      example: ca
+                    tax_region:
+                      type: string
+                      description: Tax region of the applied tax.
+                      example: on
+                    taxable_amount:
+                      type: number
+                      description: Amount on which the tax was applied.
+                      example: 80
+    TaxDetermineResponseError:
+      title: TaxCalculateResponseError
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              message:
+                type: string
+              field:
+                type: string
+  securitySchemes:
+    Ocp-Apim-Subscription-Key:
+      type: apiKey
+      description: API Subscription Key
+      name: Ocp-Apim-Subscription-Key
+      in: header
+security:
+  - Ocp-Apim-Subscription-Key: []
+tags:
+  - name: Tax
