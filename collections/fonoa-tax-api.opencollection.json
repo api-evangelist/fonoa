@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fonoa E-Invoicing Lookup V2 Tax API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tax",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a calculation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-demo.fonoa.com/tax/v2/calculations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "In the one example, you can see a tax determination for a service provided directly to a consumer not through a marketplace. The other example shows a tax determination for a transaction that takes place between a third party seller and a consumer through a marketplace.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,350 @@
+{
+  "item": [
+    {
+      "id": "c1ef8182-2c91-42c0-904f-a4746e9cfc71",
+      "name": "Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6c08adf-ab82-4a80-ba5d-b9f4f50cbedd",
+          "name": "Submit a transaction",
+          "request": {
+            "name": "Submit a transaction",
+            "description": {
+              "content": "Submit a transaction to fulfill digital reporting requirements. Depending on the configuration one or more operations may be executed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country_code\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"number\": \"<integer>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"<string>\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": \"<number>\",\n          \"regime\": \"<string>\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rate\": \"<number>\",\n          \"regime\": \"<string>\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"type\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"number\": \"<integer>\",\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"<string>\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": \"<number>\",\n          \"regime\": \"<string>\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rate\": \"<number>\",\n          \"regime\": \"<string>\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"type\": \"<string>\",\n      \"unit\": \"<string>\"\n    }\n  ],\n  \"language_code\": \"<string>\",\n  \"supplier\": {\n    \"id\": \"<string>\",\n    \"external_id\": \"<string>\"\n  },\n  \"transaction_date\": \"<string>\",\n  \"transaction_id\": \"<string>\",\n  \"transaction_number\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"external_id\": \"<string>\"\n  },\n  \"direction\": \"<string>\",\n  \"note\": \"<string>\",\n  \"operation_regime\": \"<string>\",\n  \"payments\": [\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"<string>\",\n      \"code\": \"<string>\",\n      \"date_of_payment\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"<string>\",\n      \"code\": \"<string>\",\n      \"date_of_payment\": \"<string>\"\n    }\n  ],\n  \"reference_transaction_id\": \"<string>\",\n  \"total_amount\": \"<number>\",\n  \"total_net_amount\": \"<number>\",\n  \"total_tax_amount\": \"<number>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b64e535-7fed-4533-bea1-34a7e9bd06bb",
+              "name": "Accepted - transaction was successfully submitted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_code\": \"PT\",\n  \"currency_code\": \"USD\",\n  \"items\": [\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    },\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    }\n  ],\n  \"language_code\": \"EN\",\n  \"supplier\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"transaction_date\": \"2021-01-07T01:00:00+00:00\",\n  \"transaction_id\": \"Reference101\",\n  \"transaction_number\": \"IE00000001\",\n  \"customer\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"direction\": \"SENT\",\n  \"note\": \"This is my HTML <e>enabled</e> note.\",\n  \"operation_regime\": \"GENERAL\",\n  \"payments\": [\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    },\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    }\n  ],\n  \"reference_transaction_id\": \"MY_ORIGINAL_IDENTIFIER_0001\",\n  \"total_amount\": \"<number>\",\n  \"total_net_amount\": \"<number>\",\n  \"total_tax_amount\": \"<number>\",\n  \"type\": \"FULL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"message\": \"string\",\n  \"operation_id\": \"string\",\n  \"transaction_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "673b8859-df03-432f-a157-e3173d7094ce",
+              "name": "Bad customer request - some of the provided information is incorrect or mandatory data is missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_code\": \"PT\",\n  \"currency_code\": \"USD\",\n  \"items\": [\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    },\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    }\n  ],\n  \"language_code\": \"EN\",\n  \"supplier\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"transaction_date\": \"2021-01-07T01:00:00+00:00\",\n  \"transaction_id\": \"Reference101\",\n  \"transaction_number\": \"IE00000001\",\n  \"customer\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"direction\": \"SENT\",\n  \"note\": \"This is my HTML <e>enabled</e> note.\",\n  \"operation_regime\": \"GENERAL\",\n  \"payments\": [\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    },\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    }\n  ],\n  \"reference_transaction_id\": \"MY_ORIGINAL_IDENTIFIER_0001\",\n  \"total_amount\": \"<number>\",\n  \"total_net_amount\": \"<number>\",\n  \"total_tax_amount\": \"<number>\",\n  \"type\": \"FULL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"message\": \"string\",\n  \"operation_id\": \"string\",\n  \"transaction_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e9822d5-47b3-4baf-b37a-274ec9750739",
+              "name": "Authentication failed - missing or incorrect subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_code\": \"PT\",\n  \"currency_code\": \"USD\",\n  \"items\": [\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    },\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    }\n  ],\n  \"language_code\": \"EN\",\n  \"supplier\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"transaction_date\": \"2021-01-07T01:00:00+00:00\",\n  \"transaction_id\": \"Reference101\",\n  \"transaction_number\": \"IE00000001\",\n  \"customer\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"direction\": \"SENT\",\n  \"note\": \"This is my HTML <e>enabled</e> note.\",\n  \"operation_regime\": \"GENERAL\",\n  \"payments\": [\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    },\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    }\n  ],\n  \"reference_transaction_id\": \"MY_ORIGINAL_IDENTIFIER_0001\",\n  \"total_amount\": \"<number>\",\n  \"total_net_amount\": \"<number>\",\n  \"total_tax_amount\": \"<number>\",\n  \"type\": \"FULL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96140ccf-e5ba-48a4-a8e3-437a782b86f9",
+              "name": "Too many requests were sent for a short period of time. Try again a bit later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_code\": \"PT\",\n  \"currency_code\": \"USD\",\n  \"items\": [\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    },\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    }\n  ],\n  \"language_code\": \"EN\",\n  \"supplier\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"transaction_date\": \"2021-01-07T01:00:00+00:00\",\n  \"transaction_id\": \"Reference101\",\n  \"transaction_number\": \"IE00000001\",\n  \"customer\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"direction\": \"SENT\",\n  \"note\": \"This is my HTML <e>enabled</e> note.\",\n  \"operation_regime\": \"GENERAL\",\n  \"payments\": [\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    },\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    }\n  ],\n  \"reference_transaction_id\": \"MY_ORIGINAL_IDENTIFIER_0001\",\n  \"total_amount\": \"<number>\",\n  \"total_net_amount\": \"<number>\",\n  \"total_tax_amount\": \"<number>\",\n  \"type\": \"FULL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0dabe5d7-0a29-4143-bf9f-ae179d936abf",
+              "name": "Internal server error. Retry again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_code\": \"PT\",\n  \"currency_code\": \"USD\",\n  \"items\": [\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    },\n    {\n      \"name\": \"Chocolate cookies\",\n      \"number\": 1,\n      \"quantity\": \"<number>\",\n      \"unit_price\": \"<number>\",\n      \"code\": \"<string>\",\n      \"description\": \"<string>\",\n      \"ean\": \"5012345678900\",\n      \"net_price\": \"<number>\",\n      \"tax_breakdown\": [\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        },\n        {\n          \"rate\": 25,\n          \"regime\": \"VAT\",\n          \"amount\": \"<number>\",\n          \"application_mode\": \"<string>\",\n          \"code\": \"M11\",\n          \"type\": \"PT-MA\"\n        }\n      ],\n      \"type\": \"GOODS\",\n      \"unit\": \"pcs\"\n    }\n  ],\n  \"language_code\": \"EN\",\n  \"supplier\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"transaction_date\": \"2021-01-07T01:00:00+00:00\",\n  \"transaction_id\": \"Reference101\",\n  \"transaction_number\": \"IE00000001\",\n  \"customer\": {\n    \"id\": \"a7cc64422fc247069aa64d4fe8b387c5\",\n    \"external_id\": \"MY_EXTERNAL_ID_001\"\n  },\n  \"direction\": \"SENT\",\n  \"note\": \"This is my HTML <e>enabled</e> note.\",\n  \"operation_regime\": \"GENERAL\",\n  \"payments\": [\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    },\n    {\n      \"type\": \"CARD ending in 2022\",\n      \"amount\": \"<number>\",\n      \"card_brand\": \"VISA\",\n      \"code\": \"PUE\",\n      \"date_of_payment\": \"2021-01-01T00:00:00Z\"\n    }\n  ],\n  \"reference_transaction_id\": \"MY_ORIGINAL_IDENTIFIER_0001\",\n  \"total_amount\": \"<number>\",\n  \"total_net_amount\": \"<number>\",\n  \"total_tax_amount\": \"<number>\",\n  \"type\": \"FULL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"message\": \"string\",\n  \"operation_id\": \"string\",\n  \"transaction_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-demo.fonoa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c995f2d-e932-4e8d-afe2-656f310f814f",
+    "name": "Fonoa E-Invoicing Lookup V2 Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified e-invoicing API that manages the full transaction lifecycle including submitting, adjusting, crediting, and canceling e-invoices in compliance with local mandates across multiple countries. Supports backfilling previously reported transactions and retrieving transaction history and status.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "item": [
+    {
+      "id": "a8d6cff8-6044-4778-9fda-a164bbb23e15",
+      "name": "Onboarding",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4c1f33d-c6c5-4294-ad23-0505dba36e5b",
+          "name": "Onboard a company",
+          "request": {
+            "name": "Onboard a company",
+            "description": {
+              "content": "Register a company (supplier or customer) into the Fonoa platform. Each transaction consists of at least two parties: Supplier and Customer. Use this endpoint to onboard supplier companies and B2B customer companies. For B2C individual customers, use the individual onboarding endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "onboarding",
+                "v2",
+                "companies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"<object>\",\n  \"company_number\": \"<string>\",\n  \"legal_name\": \"<string>\",\n  \"meta\": \"<object>\",\n  \"contact_details\": \"<object>\",\n  \"establishment_date\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"representative_email\": \"<string>\",\n  \"representative_name\": \"<string>\",\n  \"tax_credentials\": \"<object>\",\n  \"tax_information\": \"<object>\",\n  \"template_configuration\": \"<object>\",\n  \"trade_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bceb5b89-f5ee-4e0a-b75b-e0e2fde0846a",
+              "name": "Accepted - company was successfully onboarded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onboarding",
+                    "v2",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"country_code\": \"US\",\n    \"address_line_1\": \"123 Main Street\",\n    \"address_line_2\": \"Suite 400\",\n    \"canton\": \"Zürich\",\n    \"city\": \"San Francisco\",\n    \"city_code\": \"SF123\",\n    \"district\": \"Financial District\",\n    \"neighbourhood\": \"Downtown\",\n    \"number\": \"123\",\n    \"postal_code\": \"94105\",\n    \"prefix\": \"North\",\n    \"province\": \"Ontario\",\n    \"region\": \"Midwest\",\n    \"state\": \"California\",\n    \"suffix\": \"Avenue\"\n  },\n  \"company_number\": \"123456789\",\n  \"legal_name\": \"Fonoa Inc.\",\n  \"meta\": {\n    \"country_code\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"language_code\": \"<string>\",\n    \"transaction_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webhook\": \"<string>\"\n  },\n  \"contact_details\": {\n    \"certified_email\": \"certified@company.com\",\n    \"email\": \"contact@company.com\",\n    \"phone_number\": \"+1-800-123-4567\",\n    \"website\": \"https://www.company.com\"\n  },\n  \"establishment_date\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"representative_email\": \"<string>\",\n  \"representative_name\": \"<string>\",\n  \"tax_credentials\": {\n    \"certificate_password\": \"securePassword123\",\n    \"certificate_private_key_base64\": \"MIIEvQIBADANBgkqhkiG9w0B...\",\n    \"certificate_base64\": \"MIIDdzCCAl+gAwIBAgIEbFJ...\",\n    \"certificate_type\": \"pkcs12\",\n    \"password\": \"Pa$$w0rdSecure!\",\n    \"pin\": \"1234\",\n    \"username\": \"tax_user_001\"\n  },\n  \"tax_information\": {\n    \"activity_code\": \"ACT-200\",\n    \"additional_tax_numbers\": [\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"authorization_code\": \"AUTH-987654\",\n    \"billing_file_number\": \"BFN-00123\",\n    \"cash_vat_scheme\": \"<boolean>\",\n    \"device_id\": \"DEVICE-456789\",\n    \"eac_code\": \"6201\",\n    \"point_of_sale\": \"POS-1001\",\n    \"regime\": \"VAT\",\n    \"tax_code\": \"TX-001\",\n    \"tax_number\": \"123456789\"\n  },\n  \"template_configuration\": {\n    \"color\": \"<string>\",\n    \"font\": \"<string>\",\n    \"logo_placement\": \"<string>\"\n  },\n  \"trade_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"job_id\": \"fad3e91a0a46489cbcb82db1693df05b\",\n    \"job_status_location\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"validation\"\n    },\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"validation\"\n    }\n  ],\n  \"message\": \"string\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9a14a20-d7fd-4c61-af2f-e119e60c2c28",
+              "name": "Bad customer request - some of the provided information is incorrect or mandatory data is missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onboarding",
+                    "v2",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"country_code\": \"US\",\n    \"address_line_1\": \"123 Main Street\",\n    \"address_line_2\": \"Suite 400\",\n    \"canton\": \"Zürich\",\n    \"city\": \"San Francisco\",\n    \"city_code\": \"SF123\",\n    \"district\": \"Financial District\",\n    \"neighbourhood\": \"Downtown\",\n    \"number\": \"123\",\n    \"postal_code\": \"94105\",\n    \"prefix\": \"North\",\n    \"province\": \"Ontario\",\n    \"region\": \"Midwest\",\n    \"state\": \"California\",\n    \"suffix\": \"Avenue\"\n  },\n  \"company_number\": \"123456789\",\n  \"legal_name\": \"Fonoa Inc.\",\n  \"meta\": {\n    \"country_code\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"language_code\": \"<string>\",\n    \"transaction_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webhook\": \"<string>\"\n  },\n  \"contact_details\": {\n    \"certified_email\": \"certified@company.com\",\n    \"email\": \"contact@company.com\",\n    \"phone_number\": \"+1-800-123-4567\",\n    \"website\": \"https://www.company.com\"\n  },\n  \"establishment_date\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"representative_email\": \"<string>\",\n  \"representative_name\": \"<string>\",\n  \"tax_credentials\": {\n    \"certificate_password\": \"securePassword123\",\n    \"certificate_private_key_base64\": \"MIIEvQIBADANBgkqhkiG9w0B...\",\n    \"certificate_base64\": \"MIIDdzCCAl+gAwIBAgIEbFJ...\",\n    \"certificate_type\": \"pkcs12\",\n    \"password\": \"Pa$$w0rdSecure!\",\n    \"pin\": \"1234\",\n    \"username\": \"tax_user_001\"\n  },\n  \"tax_information\": {\n    \"activity_code\": \"ACT-200\",\n    \"additional_tax_numbers\": [\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"authorization_code\": \"AUTH-987654\",\n    \"billing_file_number\": \"BFN-00123\",\n    \"cash_vat_scheme\": \"<boolean>\",\n    \"device_id\": \"DEVICE-456789\",\n    \"eac_code\": \"6201\",\n    \"point_of_sale\": \"POS-1001\",\n    \"regime\": \"VAT\",\n    \"tax_code\": \"TX-001\",\n    \"tax_number\": \"123456789\"\n  },\n  \"template_configuration\": {\n    \"color\": \"<string>\",\n    \"font\": \"<string>\",\n    \"logo_placement\": \"<string>\"\n  },\n  \"trade_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"validation\"\n    },\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"validation\"\n    }\n  ],\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22f86d54-eff8-4562-a4a0-6ad93ba4d9c1",
+              "name": "Authentication failed - missing or incorrect subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onboarding",
+                    "v2",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"country_code\": \"US\",\n    \"address_line_1\": \"123 Main Street\",\n    \"address_line_2\": \"Suite 400\",\n    \"canton\": \"Zürich\",\n    \"city\": \"San Francisco\",\n    \"city_code\": \"SF123\",\n    \"district\": \"Financial District\",\n    \"neighbourhood\": \"Downtown\",\n    \"number\": \"123\",\n    \"postal_code\": \"94105\",\n    \"prefix\": \"North\",\n    \"province\": \"Ontario\",\n    \"region\": \"Midwest\",\n    \"state\": \"California\",\n    \"suffix\": \"Avenue\"\n  },\n  \"company_number\": \"123456789\",\n  \"legal_name\": \"Fonoa Inc.\",\n  \"meta\": {\n    \"country_code\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"language_code\": \"<string>\",\n    \"transaction_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webhook\": \"<string>\"\n  },\n  \"contact_details\": {\n    \"certified_email\": \"certified@company.com\",\n    \"email\": \"contact@company.com\",\n    \"phone_number\": \"+1-800-123-4567\",\n    \"website\": \"https://www.company.com\"\n  },\n  \"establishment_date\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"representative_email\": \"<string>\",\n  \"representative_name\": \"<string>\",\n  \"tax_credentials\": {\n    \"certificate_password\": \"securePassword123\",\n    \"certificate_private_key_base64\": \"MIIEvQIBADANBgkqhkiG9w0B...\",\n    \"certificate_base64\": \"MIIDdzCCAl+gAwIBAgIEbFJ...\",\n    \"certificate_type\": \"pkcs12\",\n    \"password\": \"Pa$$w0rdSecure!\",\n    \"pin\": \"1234\",\n    \"username\": \"tax_user_001\"\n  },\n  \"tax_information\": {\n    \"activity_code\": \"ACT-200\",\n    \"additional_tax_numbers\": [\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"authorization_code\": \"AUTH-987654\",\n    \"billing_file_number\": \"BFN-00123\",\n    \"cash_vat_scheme\": \"<boolean>\",\n    \"device_id\": \"DEVICE-456789\",\n    \"eac_code\": \"6201\",\n    \"point_of_sale\": \"POS-1001\",\n    \"regime\": \"VAT\",\n    \"tax_code\": \"TX-001\",\n    \"tax_number\": \"123456789\"\n  },\n  \"template_configuration\": {\n    \"color\": \"<string>\",\n    \"font\": \"<string>\",\n    \"logo_placement\": \"<string>\"\n  },\n  \"trade_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04665eaa-5c37-49be-9ed5-d45034700e73",
+              "name": "Conflict - the company already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onboarding",
+                    "v2",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"country_code\": \"US\",\n    \"address_line_1\": \"123 Main Street\",\n    \"address_line_2\": \"Suite 400\",\n    \"canton\": \"Zürich\",\n    \"city\": \"San Francisco\",\n    \"city_code\": \"SF123\",\n    \"district\": \"Financial District\",\n    \"neighbourhood\": \"Downtown\",\n    \"number\": \"123\",\n    \"postal_code\": \"94105\",\n    \"prefix\": \"North\",\n    \"province\": \"Ontario\",\n    \"region\": \"Midwest\",\n    \"state\": \"California\",\n    \"suffix\": \"Avenue\"\n  },\n  \"company_number\": \"123456789\",\n  \"legal_name\": \"Fonoa Inc.\",\n  \"meta\": {\n    \"country_code\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"language_code\": \"<string>\",\n    \"transaction_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webhook\": \"<string>\"\n  },\n  \"contact_details\": {\n    \"certified_email\": \"certified@company.com\",\n    \"email\": \"contact@company.com\",\n    \"phone_number\": \"+1-800-123-4567\",\n    \"website\": \"https://www.company.com\"\n  },\n  \"establishment_date\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"representative_email\": \"<string>\",\n  \"representative_name\": \"<string>\",\n  \"tax_credentials\": {\n    \"certificate_password\": \"securePassword123\",\n    \"certificate_private_key_base64\": \"MIIEvQIBADANBgkqhkiG9w0B...\",\n    \"certificate_base64\": \"MIIDdzCCAl+gAwIBAgIEbFJ...\",\n    \"certificate_type\": \"pkcs12\",\n    \"password\": \"Pa$$w0rdSecure!\",\n    \"pin\": \"1234\",\n    \"username\": \"tax_user_001\"\n  },\n  \"tax_information\": {\n    \"activity_code\": \"ACT-200\",\n    \"additional_tax_numbers\": [\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"authorization_code\": \"AUTH-987654\",\n    \"billing_file_number\": \"BFN-00123\",\n    \"cash_vat_scheme\": \"<boolean>\",\n    \"device_id\": \"DEVICE-456789\",\n    \"eac_code\": \"6201\",\n    \"point_of_sale\": \"POS-1001\",\n    \"regime\": \"VAT\",\n    \"tax_code\": \"TX-001\",\n    \"tax_number\": \"123456789\"\n  },\n  \"template_configuration\": {\n    \"color\": \"<string>\",\n    \"font\": \"<string>\",\n    \"logo_placement\": \"<string>\"\n  },\n  \"trade_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4854a9e1-b331-4527-8e85-24122e963c8b",
+              "name": "Too many requests were sent for a short period of time. Try again a bit later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onboarding",
+                    "v2",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"country_code\": \"US\",\n    \"address_line_1\": \"123 Main Street\",\n    \"address_line_2\": \"Suite 400\",\n    \"canton\": \"Zürich\",\n    \"city\": \"San Francisco\",\n    \"city_code\": \"SF123\",\n    \"district\": \"Financial District\",\n    \"neighbourhood\": \"Downtown\",\n    \"number\": \"123\",\n    \"postal_code\": \"94105\",\n    \"prefix\": \"North\",\n    \"province\": \"Ontario\",\n    \"region\": \"Midwest\",\n    \"state\": \"California\",\n    \"suffix\": \"Avenue\"\n  },\n  \"company_number\": \"123456789\",\n  \"legal_name\": \"Fonoa Inc.\",\n  \"meta\": {\n    \"country_code\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"language_code\": \"<string>\",\n    \"transaction_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webhook\": \"<string>\"\n  },\n  \"contact_details\": {\n    \"certified_email\": \"certified@company.com\",\n    \"email\": \"contact@company.com\",\n    \"phone_number\": \"+1-800-123-4567\",\n    \"website\": \"https://www.company.com\"\n  },\n  \"establishment_date\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"representative_email\": \"<string>\",\n  \"representative_name\": \"<string>\",\n  \"tax_credentials\": {\n    \"certificate_password\": \"securePassword123\",\n    \"certificate_private_key_base64\": \"MIIEvQIBADANBgkqhkiG9w0B...\",\n    \"certificate_base64\": \"MIIDdzCCAl+gAwIBAgIEbFJ...\",\n    \"certificate_type\": \"pkcs12\",\n    \"password\": \"Pa$$w0rdSecure!\",\n    \"pin\": \"1234\",\n    \"username\": \"tax_user_001\"\n  },\n  \"tax_information\": {\n    \"activity_code\": \"ACT-200\",\n    \"additional_tax_numbers\": [\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"authorization_code\": \"AUTH-987654\",\n    \"billing_file_number\": \"BFN-00123\",\n    \"cash_vat_scheme\": \"<boolean>\",\n    \"device_id\": \"DEVICE-456789\",\n    \"eac_code\": \"6201\",\n    \"point_of_sale\": \"POS-1001\",\n    \"regime\": \"VAT\",\n    \"tax_code\": \"TX-001\",\n    \"tax_number\": \"123456789\"\n  },\n  \"template_configuration\": {\n    \"color\": \"<string>\",\n    \"font\": \"<string>\",\n    \"logo_placement\": \"<string>\"\n  },\n  \"trade_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c1441dbd-4e66-48a3-86b8-640968f123c9",
+              "name": "Internal server error. Retry again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onboarding",
+                    "v2",
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"country_code\": \"US\",\n    \"address_line_1\": \"123 Main Street\",\n    \"address_line_2\": \"Suite 400\",\n    \"canton\": \"Zürich\",\n    \"city\": \"San Francisco\",\n    \"city_code\": \"SF123\",\n    \"district\": \"Financial District\",\n    \"neighbourhood\": \"Downtown\",\n    \"number\": \"123\",\n    \"postal_code\": \"94105\",\n    \"prefix\": \"North\",\n    \"province\": \"Ontario\",\n    \"region\": \"Midwest\",\n    \"state\": \"California\",\n    \"suffix\": \"Avenue\"\n  },\n  \"company_number\": \"123456789\",\n  \"legal_name\": \"Fonoa Inc.\",\n  \"meta\": {\n    \"country_code\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"language_code\": \"<string>\",\n    \"transaction_purposes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webhook\": \"<string>\"\n  },\n  \"contact_details\": {\n    \"certified_email\": \"certified@company.com\",\n    \"email\": \"contact@company.com\",\n    \"phone_number\": \"+1-800-123-4567\",\n    \"website\": \"https://www.company.com\"\n  },\n  \"establishment_date\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"representative_email\": \"<string>\",\n  \"representative_name\": \"<string>\",\n  \"tax_credentials\": {\n    \"certificate_password\": \"securePassword123\",\n    \"certificate_private_key_base64\": \"MIIEvQIBADANBgkqhkiG9w0B...\",\n    \"certificate_base64\": \"MIIDdzCCAl+gAwIBAgIEbFJ...\",\n    \"certificate_type\": \"pkcs12\",\n    \"password\": \"Pa$$w0rdSecure!\",\n    \"pin\": \"1234\",\n    \"username\": \"tax_user_001\"\n  },\n  \"tax_information\": {\n    \"activity_code\": \"ACT-200\",\n    \"additional_tax_numbers\": [\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"country_code\": \"US\",\n        \"tax_number\": \"123456789\",\n        \"business_model\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_subdivision_code\": \"CA\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"authorization_code\": \"AUTH-987654\",\n    \"billing_file_number\": \"BFN-00123\",\n    \"cash_vat_scheme\": \"<boolean>\",\n    \"device_id\": \"DEVICE-456789\",\n    \"eac_code\": \"6201\",\n    \"point_of_sale\": \"POS-1001\",\n    \"regime\": \"VAT\",\n    \"tax_code\": \"TX-001\",\n    \"tax_number\": \"123456789\"\n  },\n  \"template_configuration\": {\n    \"color\": \"<string>\",\n    \"font\": \"<string>\",\n    \"logo_placement\": \"<string>\"\n  },\n  \"trade_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"validation\"\n    },\n    {\n      \"code\": \"string\",\n      \"doc_link\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"validation\"\n    }\n  ],\n  \"message\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-demo.fonoa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6866232e-8e4f-45a1-824e-4ffa152ebc4d",
+    "name": "Fonoa E-Invoicing Lookup V2 Onboarding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified e-invoicing API that manages the full transaction lifecycle including submitting, adjusting, crediting, and canceling e-invoices in compliance with local mandates across multiple countries. Supports backfilling previously reported transactions and retrieving transaction history and status.\n",
+      "type": "text/plain"
+    }
+  }
+}

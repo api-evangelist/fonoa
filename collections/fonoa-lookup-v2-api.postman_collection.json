@@ -1,0 +1,1795 @@
+{
+  "item": [
+    {
+      "id": "8c55b9f0-a137-4567-bb6b-87b6d418f257",
+      "name": "Lookup V2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "94def326-c592-45b5-a157-6cffdd15d57f",
+          "name": "Request a single validation",
+          "request": {
+            "name": "Request a single validation",
+            "description": {
+              "content": "Submit a single Tax Identification Number (TIN) for validation. Supports instant lookup and cached result retrieval across 120+ countries. The API returns either an immediate response (200) or an accepted async response (202).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                "v2",
+                "single-validations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country_iso_code\": \"<string>\",\n  \"tax_identification_number\": \"<string>\",\n  \"additional_parameters\": {\n    \"name\": \"<string>\",\n    \"address\": \"<string>\"\n  },\n  \"prefer_cached_result\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc36383c-d14e-4d16-97f9-8349113a94ae",
+              "name": "Immediate response for validations. Provides format validity details. Also returned for TINs with invalid format or checksum digits.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"additional_parameters\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"prefer_cached_result\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"country_iso_code\": \"gb\",\n  \"format\": \"valid\",\n  \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n  \"is_business\": \"no\",\n  \"status\": \"failed\",\n  \"result_url\": \"https://cYYxSpDnOPZXqS.nxxIzBsKhpMp\",\n  \"fuzzy_matching\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"error_details\": {\n    \"code\": \"FORMAT_INVALID\",\n    \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n    \"field\": \"string\"\n  },\n  \"business_name\": \"string\",\n  \"business_address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cb10b74-a1ea-4f69-845c-698e9f6c1caf",
+              "name": "The validation process has started. Fetch results from the resource provided in the response or use webhooks for status updates.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"additional_parameters\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"prefer_cached_result\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"country_iso_code\": \"gb\",\n  \"format\": \"valid\",\n  \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n  \"is_business\": \"no\",\n  \"status\": \"failed\",\n  \"result_url\": \"https://cYYxSpDnOPZXqS.nxxIzBsKhpMp\",\n  \"fuzzy_matching\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"error_details\": {\n    \"code\": \"FORMAT_INVALID\",\n    \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n    \"field\": \"string\"\n  },\n  \"business_name\": \"string\",\n  \"business_address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33670349-bc33-40b4-b255-f19775be3b1a",
+              "name": "Bad Request - invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"additional_parameters\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"prefer_cached_result\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    },\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9415a68f-4a06-42b3-b9f4-969e8397a160",
+              "name": "Authentication failed - missing or incorrect subscription key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"additional_parameters\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"prefer_cached_result\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "32749a44-2245-41ed-a40d-946ca61c2726",
+              "name": "Unsupported Media Type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"additional_parameters\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"prefer_cached_result\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55a95f5c-33c2-45f2-9612-1eae65a91cd6",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"additional_parameters\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"prefer_cached_result\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    },\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d17ce284-8a4f-4c7b-938e-b2ad055cb70d",
+              "name": "Service Unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"additional_parameters\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"prefer_cached_result\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    },\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bd824f9-d1e0-41fc-8d82-352765b48690",
+          "name": "Request a batch validation",
+          "request": {
+            "name": "Request a batch validation",
+            "description": {
+              "content": "Submit multiple Tax Identification Numbers (TINs) for batch validation. Returns immediate results for TINs with invalid format; async processing for others with polling via the batch_validation_result_url.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                "v2",
+                "batch-validations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"validations\": [\n    {\n      \"country_iso_code\": \"<string>\",\n      \"tax_identification_number\": \"<string>\",\n      \"additional_parameters\": {\n        \"name\": \"<string>\",\n        \"address\": \"<string>\"\n      },\n      \"prefer_cached_result\": false\n    },\n    {\n      \"country_iso_code\": \"<string>\",\n      \"tax_identification_number\": \"<string>\",\n      \"additional_parameters\": {\n        \"name\": \"<string>\",\n        \"address\": \"<string>\"\n      },\n      \"prefer_cached_result\": false\n    }\n  ],\n  \"batch_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f29c5e45-c3d0-46a5-a6e3-1b898ce5566c",
+              "name": "All validations completed immediately.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validations\": [\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    },\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    }\n  ],\n  \"batch_name\": \"batch-2022-12-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batch_id\": \"bd5fa7cc-3597-454e-86fb-a94b79514726\",\n  \"batch_name\": \"batch-2022-12-25-09-07-54\",\n  \"validations\": [\n    {\n      \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"country_iso_code\": \"gb\",\n      \"format\": \"invalid\",\n      \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n      \"is_business\": \"unknown\",\n      \"status\": \"failed\",\n      \"result_url\": \"http://xLjdnhUgaYfCkRGFhYkEGz.xuwrwJoZhzppKrwokafau,siyL5COI0NMuQyE2iUuiYiuXB\",\n      \"fuzzy_matching\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"error_details\": {\n        \"code\": \"FORMAT_INVALID\",\n        \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n        \"field\": \"string\"\n      },\n      \"business_name\": \"string\",\n      \"business_address\": \"string\"\n    },\n    {\n      \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"country_iso_code\": \"gb\",\n      \"format\": \"valid\",\n      \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n      \"is_business\": \"no\",\n      \"status\": \"failed\",\n      \"result_url\": \"https://EnYktaHqOEMonTq.nrV1X0OfqK0hzY3LLjwKI..Z\",\n      \"fuzzy_matching\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"error_details\": {\n        \"code\": \"FORMAT_INVALID\",\n        \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n        \"field\": \"string\"\n      },\n      \"business_name\": \"string\",\n      \"business_address\": \"string\"\n    }\n  ],\n  \"requested_at\": \"2022-05-19T13:03:44.667Z\",\n  \"status\": \"completed\",\n  \"batch_validation_result_url\": \"https://api-demo.fonoa.com/lookup/v2/batch-validations/bd5fa7cc-3597-454e-86fb-a94b79514726\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfbc3039-2133-4c9a-a2fd-68602026e1c1",
+              "name": "Batch validation accepted; processing in background.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validations\": [\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    },\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    }\n  ],\n  \"batch_name\": \"batch-2022-12-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batch_id\": \"7e7f4459-5871-47a1-af3d-364df9c31fe0\",\n  \"batch_name\": \"batch-2022-12-25-09-07-54\",\n  \"validations\": [\n    {\n      \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"country_iso_code\": \"gb\",\n      \"format\": \"valid\",\n      \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n      \"is_business\": \"unknown\"\n    }\n  ],\n  \"requested_at\": \"2021-03-25T09:37:41.649Z\",\n  \"status\": \"running\",\n  \"batch_validation_result_url\": \"https://api-demo.fonoa.com/lookup/v2/batch-validations/7e7f4459-5871-47a1-af3d-364df9c31fe0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b534c01a-0e9b-4a9a-8436-330c862e86f1",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validations\": [\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    },\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    }\n  ],\n  \"batch_name\": \"batch-2022-12-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    },\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c93acbd-f93a-46a4-a89f-d1d0ef3363a2",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validations\": [\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    },\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    }\n  ],\n  \"batch_name\": \"batch-2022-12-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d599a5b4-e8f9-429a-8307-e70bb7de5863",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validations\": [\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    },\n    {\n      \"country_iso_code\": \"gb\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"additional_parameters\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"prefer_cached_result\": false\n    }\n  ],\n  \"batch_name\": \"batch-2022-12-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    },\n    {\n      \"code\": \"FORMAT_INVALID\",\n      \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n      \"field\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a647c579-3512-49fc-b53c-5da845facd2b",
+          "name": "Get result of batch validation",
+          "request": {
+            "name": "Get result of batch validation",
+            "description": {
+              "content": "Poll for the result of a previously submitted batch validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                "v2",
+                "batch-validations",
+                ":batch_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batch_id",
+                  "description": "(Required) The batch validation ID returned from the POST request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "445c3d88-2772-4dfc-aad3-d86b1b699d46",
+              "name": "Batch validation results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The batch validation ID returned from the POST request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batch_id\": \"bd5fa7cc-3597-454e-86fb-a94b79514726\",\n  \"batch_name\": \"batch-2022-12-25-09-07-54\",\n  \"validations\": [\n    {\n      \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"country_iso_code\": \"gb\",\n      \"format\": \"valid\",\n      \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n      \"is_business\": \"no\",\n      \"status\": \"completed\",\n      \"result_url\": \"http://GlGIZkOifYQJWqOHfWuX.vyslc71NiTGzT+bgojFTveyCc8qulNYmCDuYwoKuT9\",\n      \"fuzzy_matching\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"error_details\": {\n        \"code\": \"FORMAT_INVALID\",\n        \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n        \"field\": \"string\"\n      },\n      \"business_name\": \"string\",\n      \"business_address\": \"string\"\n    },\n    {\n      \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n      \"tax_identification_number\": \"GB830930346\",\n      \"country_iso_code\": \"gb\",\n      \"format\": \"valid\",\n      \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n      \"is_business\": \"no\",\n      \"status\": \"completed\",\n      \"result_url\": \"http://FPpQipVgaMCTGT.khnSkx3vtP-6qWu5wwK,f7mRioe3gs4LlKuz,60\",\n      \"fuzzy_matching\": {\n        \"name\": \"teamwear\",\n        \"address\": \"Wildflower 22 Belfast\"\n      },\n      \"error_details\": {\n        \"code\": \"FORMAT_INVALID\",\n        \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n        \"field\": \"string\"\n      },\n      \"business_name\": \"string\",\n      \"business_address\": \"string\"\n    }\n  ],\n  \"requested_at\": \"2022-05-19T13:03:44.667Z\",\n  \"status\": \"running\",\n  \"batch_validation_result_url\": \"https://api-demo.fonoa.com/lookup/v2/batch-validations/bd5fa7cc-3597-454e-86fb-a94b79514726\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6308ae13-04bd-4981-9ae6-0374cbe001dd",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The batch validation ID returned from the POST request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a636e86c-c863-497e-9e3c-b2a68c998e11",
+              "name": "Batch validation not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The batch validation ID returned from the POST request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "095e23e3-5a30-469f-8b41-cf601797676b",
+          "name": "Cancel a batch validation",
+          "request": {
+            "name": "Cancel a batch validation",
+            "description": {
+              "content": "Cancel a pending batch validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                "v2",
+                "batch-validations",
+                ":batch_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batch_id",
+                  "description": "(Required) The batch validation ID to cancel."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73e9bf5e-4731-4d6c-881f-01942ff4aaa5",
+              "name": "Batch validation successfully cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The batch validation ID to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07f54425-fcae-4680-ba34-0d138f211666",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The batch validation ID to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aecadcb5-ced1-45bf-8eca-93ae42d4aba3",
+              "name": "Batch validation not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "batch-validations",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The batch validation ID to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6008a1fc-4e2d-4610-b37e-8219e9d8b733",
+          "name": "Get result of a single validation",
+          "request": {
+            "name": "Get result of a single validation",
+            "description": {
+              "content": "Retrieve the result of a previously submitted single TIN validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                "v2",
+                "single-validations",
+                ":validation_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "validation_id",
+                  "description": "(Required) The validation ID returned from the POST request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d92ed662-d1c0-4e6e-82ec-16a2f8d1e30c",
+              "name": "Validation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) The validation ID returned from the POST request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validation_id\": \"3dc8b6d9-57af-4afb-9184-ef510be3f388\",\n  \"tax_identification_number\": \"GB830930346\",\n  \"country_iso_code\": \"gb\",\n  \"format\": \"valid\",\n  \"requested_at\": \"2022-12-28T14:55:11.575Z\",\n  \"is_business\": \"no\",\n  \"status\": \"failed\",\n  \"result_url\": \"https://cYYxSpDnOPZXqS.nxxIzBsKhpMp\",\n  \"fuzzy_matching\": {\n    \"name\": \"teamwear\",\n    \"address\": \"Wildflower 22 Belfast\"\n  },\n  \"error_details\": {\n    \"code\": \"FORMAT_INVALID\",\n    \"message\": \"ABN should contain 11 digits, and ACN should contain 9 digits\",\n    \"field\": \"string\"\n  },\n  \"business_name\": \"string\",\n  \"business_address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d32e7894-32d5-4a15-ba67-714e94fa8a5c",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) The validation ID returned from the POST request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1831c869-c195-41c4-91b7-a23ea0bd0b21",
+              "name": "Validation not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) The validation ID returned from the POST request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6310a5cf-b936-4a91-8416-73dcddd29a2f",
+          "name": "Delete result of a single validation",
+          "request": {
+            "name": "Delete result of a single validation",
+            "description": {
+              "content": "Delete the result of a completed single TIN validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                "v2",
+                "single-validations",
+                ":validation_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "validation_id",
+                  "description": "(Required) The validation ID to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00d3f56f-4841-4ebe-967a-bfe844182476",
+              "name": "Validation result successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) The validation ID to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c00f9bfa-2a59-4f18-83f1-c44047922b79",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) The validation ID to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23d4b883-38b9-4865-b168-84b49c015470",
+              "name": "Validation not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "single-validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) The validation ID to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49ffc3d6-e966-47b2-80d3-5af227c14cdd",
+          "name": "Request a TIN search",
+          "request": {
+            "name": "Request a TIN search",
+            "description": {
+              "content": "Search for a Tax Identification Number by business name and country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookup",
+                "v2",
+                "tin-search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country_iso_code\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd48e147-9cfe-4e8f-bb8f-76797e0a7f70",
+              "name": "TIN search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "tin-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"name\": \"Fonoa Technologies\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8fff4ead-1674-4a23-86bc-e05c072f737e",
+              "name": "TIN search accepted; processing in background.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "tin-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"name\": \"Fonoa Technologies\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f47b1b8a-3dce-4ede-bb30-2f6b0f84d05a",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "tin-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"name\": \"Fonoa Technologies\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e63d79eb-722c-4a4b-8ad6-a7e3b74a6c15",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookup",
+                    "v2",
+                    "tin-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country_iso_code\": \"gb\",\n  \"name\": \"Fonoa Technologies\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-demo.fonoa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e13f29b2-62cd-42e9-b4fc-ef5fc56eb4fd",
+    "name": "Fonoa E-Invoicing Lookup V2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified e-invoicing API that manages the full transaction lifecycle including submitting, adjusting, crediting, and canceling e-invoices in compliance with local mandates across multiple countries. Supports backfilling previously reported transactions and retrieving transaction history and status.\n",
+      "type": "text/plain"
+    }
+  }
+}

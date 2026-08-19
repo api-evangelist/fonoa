@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "54b6c2aa-d1f0-4554-9a85-78450357fd9b",
+      "name": "Tax",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a738a41-ac3c-4d5e-9322-5cf3fd93e837",
+          "name": "Request a calculation",
+          "request": {
+            "name": "Request a calculation",
+            "description": {
+              "content": "In the one example, you can see a tax determination for a service provided directly to a consumer not through a marketplace. The other example shows a tax determination for a transaction that takes place between a third party seller and a consumer through a marketplace.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tax",
+                "v2",
+                "calculations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplier\": {\n    \"taxable\": \"<boolean>\",\n    \"country\": \"<string>\",\n    \"tax_region\": \"<string>\",\n    \"registered_in_customer_country\": \"<boolean>\",\n    \"reference_id\": \"<string>\"\n  },\n  \"customer\": {\n    \"taxable\": \"<boolean>\",\n    \"country\": \"<string>\",\n    \"tax_region\": \"<string>\"\n  },\n  \"transaction\": {\n    \"date\": \"<dateTime>\",\n    \"items\": [\n      {\n        \"id\": \"<string>\",\n        \"unit_price\": \"<number>\",\n        \"tax_category_code\": \"<string>\",\n        \"quantity\": 1,\n        \"description\": \"<string>\"\n      }\n    ],\n    \"id\": \"<string>\",\n    \"price_includes_tax\": true,\n    \"description\": \"<string>\",\n    \"through_marketplace\": \"<boolean>\"\n  },\n  \"marketplace\": {\n    \"registered_in_customer_country\": \"<boolean>\",\n    \"calculate_for_unregistered_customer_countries\": \"<boolean>\",\n    \"is_user_marketplace\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7fc9b16-4025-4926-b285-14f150511ac7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax",
+                    "v2",
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": {\n    \"taxable\": true,\n    \"country\": \"ca\",\n    \"tax_region\": \"bc\",\n    \"registered_in_customer_country\": true,\n    \"reference_id\": \"supplier123\"\n  },\n  \"customer\": {\n    \"taxable\": true,\n    \"country\": \"it\"\n  },\n  \"marketplace\": {\n    \"registered_in_customer_country\": true,\n    \"calculate_for_unregistered_customer_countries\": true,\n    \"is_user_marketplace\": true\n  },\n  \"transaction\": {\n    \"id\": \"order7898\",\n    \"price_includes_tax\": true,\n    \"date\": \"2022-06-15T13:40:31+10:00\",\n    \"description\": \"a transaction for a digital service\",\n    \"through_marketplace\": true,\n    \"items\": [\n      {\n        \"id\": \"1\",\n        \"unit_price\": 100,\n        \"tax_category_code\": \"fs_0302003000\",\n        \"quantity\": 1,\n        \"description\": \"a digital service\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_gross\": 7719.061371747872,\n  \"total_net\": 9188.393453391764,\n  \"total_indirect_tax_amount\": 3921.317164781819,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"unit_price\": 2309.018403296872,\n      \"gross_amount\": 3791.820148338392,\n      \"net_amount\": 9669.50419897525,\n      \"indirect_tax_amount\": 5960.4357402453,\n      \"effective_indirect_tax_rate\": 4809.345558554037,\n      \"tax_breakdown\": [\n        {\n          \"type\": \"indirect\",\n          \"name\": \"IVA\",\n          \"amount\": 20,\n          \"rate\": 0.25,\n          \"remit\": 20,\n          \"country\": \"ca\",\n          \"tax_region\": \"string\",\n          \"taxable_amount\": 80\n        },\n        {\n          \"type\": \"indirect\",\n          \"name\": \"IVA\",\n          \"amount\": 20,\n          \"rate\": 0.25,\n          \"remit\": 20,\n          \"country\": \"ca\",\n          \"tax_region\": \"string\",\n          \"taxable_amount\": 80\n        }\n      ],\n      \"quantity\": 5862,\n      \"supplier_taxable\": true,\n      \"tax_logic_label\": \"string\",\n      \"unit\": {\n        \"net_amount\": 8546.212221778876,\n        \"gross_amount\": 7205.725954499477,\n        \"indirect_tax_amount\": 5094.852944120567\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "975fa8ca-1768-4568-ac42-e7d3ee41e98a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax",
+                    "v2",
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": {\n    \"taxable\": true,\n    \"country\": \"ca\",\n    \"tax_region\": \"bc\",\n    \"registered_in_customer_country\": true,\n    \"reference_id\": \"supplier123\"\n  },\n  \"customer\": {\n    \"taxable\": true,\n    \"country\": \"it\"\n  },\n  \"marketplace\": {\n    \"registered_in_customer_country\": true,\n    \"calculate_for_unregistered_customer_countries\": true,\n    \"is_user_marketplace\": true\n  },\n  \"transaction\": {\n    \"id\": \"order7898\",\n    \"price_includes_tax\": true,\n    \"date\": \"2022-06-15T13:40:31+10:00\",\n    \"description\": \"a transaction for a digital service\",\n    \"through_marketplace\": true,\n    \"items\": [\n      {\n        \"id\": \"1\",\n        \"unit_price\": 100,\n        \"tax_category_code\": \"fs_0302003000\",\n        \"quantity\": 1,\n        \"description\": \"a digital service\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"field\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"field\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59edc040-9b17-428c-a907-4684fed78737",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax",
+                    "v2",
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier\": {\n    \"taxable\": true,\n    \"country\": \"ca\",\n    \"tax_region\": \"bc\",\n    \"registered_in_customer_country\": true,\n    \"reference_id\": \"supplier123\"\n  },\n  \"customer\": {\n    \"taxable\": true,\n    \"country\": \"it\"\n  },\n  \"marketplace\": {\n    \"registered_in_customer_country\": true,\n    \"calculate_for_unregistered_customer_countries\": true,\n    \"is_user_marketplace\": true\n  },\n  \"transaction\": {\n    \"id\": \"order7898\",\n    \"price_includes_tax\": true,\n    \"date\": \"2022-06-15T13:40:31+10:00\",\n    \"description\": \"a transaction for a digital service\",\n    \"through_marketplace\": true,\n    \"items\": [\n      {\n        \"id\": \"1\",\n        \"unit_price\": 100,\n        \"tax_category_code\": \"fs_0302003000\",\n        \"quantity\": 1,\n        \"description\": \"a digital service\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"field\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"field\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-demo.fonoa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "41c2414e-bf6c-4652-ba14-5cd6eecce76c",
+    "name": "Fonoa E-Invoicing Lookup V2 Tax API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified e-invoicing API that manages the full transaction lifecycle including submitting, adjusting, crediting, and canceling e-invoices in compliance with local mandates across multiple countries. Supports backfilling previously reported transactions and retrieving transaction history and status.\n",
+      "type": "text/plain"
+    }
+  }
+}

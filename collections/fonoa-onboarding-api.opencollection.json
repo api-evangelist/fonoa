@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fonoa E-Invoicing Lookup V2 Onboarding API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Onboarding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Onboard a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-demo.fonoa.com/onboarding/v2/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a company (supplier or customer) into the Fonoa platform. Each transaction consists of at least two parties: Supplier and Customer. Use this endpoint to onboard supplier companies and B2B customer companies. For B2C individual customers, use the individual onboarding endpoint.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fonoa E-Invoicing Lookup V2 API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a single validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-demo.fonoa.com/lookup/v2/single-validations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a single Tax Identification Number (TIN) for validation. Supports instant lookup and cached result retrieval across 120+ countries. The API returns either an immediate response (200) or an accepted async response (202).\n"
+        },
+        {
+          "info": {
+            "name": "Request a batch validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-demo.fonoa.com/lookup/v2/batch-validations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit multiple Tax Identification Numbers (TINs) for batch validation. Returns immediate results for TINs with invalid format; async processing for others with polling via the batch_validation_result_url.\n"
+        },
+        {
+          "info": {
+            "name": "Get result of batch validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-demo.fonoa.com/lookup/v2/batch-validations/:batch_id",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path",
+                "description": "The batch validation ID returned from the POST request."
+              }
+            ]
+          },
+          "docs": "Poll for the result of a previously submitted batch validation."
+        },
+        {
+          "info": {
+            "name": "Cancel a batch validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-demo.fonoa.com/lookup/v2/batch-validations/:batch_id",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path",
+                "description": "The batch validation ID to cancel."
+              }
+            ]
+          },
+          "docs": "Cancel a pending batch validation."
+        },
+        {
+          "info": {
+            "name": "Get result of a single validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-demo.fonoa.com/lookup/v2/single-validations/:validation_id",
+            "params": [
+              {
+                "name": "validation_id",
+                "value": "",
+                "type": "path",
+                "description": "The validation ID returned from the POST request."
+              }
+            ]
+          },
+          "docs": "Retrieve the result of a previously submitted single TIN validation."
+        },
+        {
+          "info": {
+            "name": "Delete result of a single validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-demo.fonoa.com/lookup/v2/single-validations/:validation_id",
+            "params": [
+              {
+                "name": "validation_id",
+                "value": "",
+                "type": "path",
+                "description": "The validation ID to delete."
+              }
+            ]
+          },
+          "docs": "Delete the result of a completed single TIN validation."
+        },
+        {
+          "info": {
+            "name": "Request a TIN search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-demo.fonoa.com/lookup/v2/tin-search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for a Tax Identification Number by business name and country."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
