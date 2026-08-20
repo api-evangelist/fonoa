@@ -35,6 +35,19 @@ tags:
   - Invoice Generation
   - Global Tax
   - Indirect Tax
+  - Fintech
+tags_raw:
+  - Tax
+  - VAT
+  - GST
+  - E-Invoicing
+  - Tax Automation
+  - Tax Compliance
+  - Tax Calculation
+  - Tax ID Validation
+  - Invoice Generation
+  - Global Tax
+  - Indirect Tax
   - FinTech
 url: https://raw.githubusercontent.com/api-evangelist/fonoa/refs/heads/main/apis.yml
 created: '2026-06-12'
@@ -49,6 +62,10 @@ apis:
   humanURL: https://docs.fonoa.com/reference/welcome-to-fonoa
   baseURL: https://api.fonoa.com/webhooks
   tags:
+  - Webhook
+  - Event Notifications
+  - Real-Time
+  tags_raw:
   - Webhooks
   - Event Notifications
   - Real-Time
@@ -115,6 +132,8 @@ apis:
   humanURL: https://docs.fonoa.com/reference/instant-lookup
   baseURL: https://api.fonoa.com/validate
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
