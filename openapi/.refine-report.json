@@ -1,20 +1,36 @@
 {
   "provider": "fonoa",
   "sources": [
-    "fonoa-lookup-v2-api-openapi.yml",
-    "fonoa-onboarding-api-openapi.yml",
-    "fonoa-tax-api-openapi.yml",
-    "fonoa-transactions-api-openapi.yml"
+    "_original/fonoa-e-invoicing-openapi.yml",
+    "_original/fonoa-onboarding-openapi.yml",
+    "_original/fonoa-tax-engine-openapi.yml",
+    "_original/fonoa-validate-openapi.yml"
   ],
   "outputs": [
-    "fonoa-lookup-v2-api-openapi.yml",
+    "fonoa-transactions-api-openapi.yml",
     "fonoa-onboarding-api-openapi.yml",
     "fonoa-tax-api-openapi.yml",
-    "fonoa-transactions-api-openapi.yml"
+    "fonoa-lookup-v2-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fonoa-e-invoicing-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "fonoa-e-invoicing-openapi.yml: tagged paths POST /v1/transactions -> Transactions",
+    "fonoa-e-invoicing-openapi.yml: declared missing tag: Transactions",
+    "fonoa-onboarding-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "fonoa-onboarding-openapi.yml: tagged paths POST /onboarding/v2/companies -> Onboarding",
+    "fonoa-onboarding-openapi.yml: declared missing tag: Onboarding",
+    "fonoa-tax-engine-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "fonoa-validate-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fonoa-lookup-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fonoa-onboarding-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fonoa-tax-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fonoa-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
