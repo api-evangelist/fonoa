@@ -264,91 +264,6 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    LookupBatchValidationResponse:
-      type: object
-      required:
-      - batch_id
-      - batch_name
-      - validations
-      - requested_at
-      - status
-      - batch_validation_result_url
-      properties:
-        batch_id:
-          type: string
-          description: Unique identifier for the batch validation.
-          example: bd5fa7cc-3597-454e-86fb-a94b79514726
-        batch_name:
-          type: string
-          description: Name of the batch validation.
-          example: batch-2022-12-25-09-07-54
-        validations:
-          type: array
-          description: List of individual validation results.
-          items:
-            $ref: '#/components/schemas/LookupValidationImmediateResponseV2'
-        requested_at:
-          type: string
-          format: date-time
-          description: Timestamp when the batch was requested.
-          example: '2022-05-19T13:03:44.667Z'
-        status:
-          type: string
-          description: Current status of the batch.
-          enum:
-          - running
-          - completed
-        batch_validation_result_url:
-          type: string
-          format: uri
-          description: URL to poll for batch results.
-          example: https://api-demo.fonoa.com/lookup/v2/batch-validations/bd5fa7cc-3597-454e-86fb-a94b79514726
-    LookupAdditionalParametersV2:
-      type: object
-      description: Additional country-specific parameters for TIN validation.
-      properties:
-        name:
-          type: string
-          description: Business name for fuzzy matching.
-          example: teamwear
-        address:
-          type: string
-          description: Business address for fuzzy matching.
-          example: Wildflower 22 Belfast
-    LookupErrorDetail:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code identifying the error type.
-          example: FORMAT_INVALID
-        message:
-          type: string
-          description: Detailed error description.
-          example: ABN should contain 11 digits, and ACN should contain 9 digits
-        field:
-          type: string
-          description: The field that caused the error, if applicable.
-    LookupTinValidationRequest:
-      type: object
-      required:
-      - country_iso_code
-      - tax_identification_number
-      properties:
-        country_iso_code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code for the TIN.
-          example: gb
-        tax_identification_number:
-          type: string
-          description: The Tax Identification Number to validate.
-          example: GB830930346
-        additional_parameters:
-          $ref: '#/components/schemas/LookupAdditionalParametersV2'
-        prefer_cached_result:
-          type: boolean
-          description: Set to true to attempt returning a result from the Instant Lookup cache.
-          default: false
     LookupValidationImmediateResponseV2:
       type: object
       properties:
@@ -413,6 +328,91 @@ components:
         business_address:
           type: string
           description: Registered business address associated with the TIN.
+    LookupBatchValidationResponse:
+      type: object
+      required:
+      - batch_id
+      - batch_name
+      - validations
+      - requested_at
+      - status
+      - batch_validation_result_url
+      properties:
+        batch_id:
+          type: string
+          description: Unique identifier for the batch validation.
+          example: bd5fa7cc-3597-454e-86fb-a94b79514726
+        batch_name:
+          type: string
+          description: Name of the batch validation.
+          example: batch-2022-12-25-09-07-54
+        validations:
+          type: array
+          description: List of individual validation results.
+          items:
+            $ref: '#/components/schemas/LookupValidationImmediateResponseV2'
+        requested_at:
+          type: string
+          format: date-time
+          description: Timestamp when the batch was requested.
+          example: '2022-05-19T13:03:44.667Z'
+        status:
+          type: string
+          description: Current status of the batch.
+          enum:
+          - running
+          - completed
+        batch_validation_result_url:
+          type: string
+          format: uri
+          description: URL to poll for batch results.
+          example: https://api-demo.fonoa.com/lookup/v2/batch-validations/bd5fa7cc-3597-454e-86fb-a94b79514726
+    LookupErrorDetail:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code identifying the error type.
+          example: FORMAT_INVALID
+        message:
+          type: string
+          description: Detailed error description.
+          example: ABN should contain 11 digits, and ACN should contain 9 digits
+        field:
+          type: string
+          description: The field that caused the error, if applicable.
+    LookupTinValidationRequest:
+      type: object
+      required:
+      - country_iso_code
+      - tax_identification_number
+      properties:
+        country_iso_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code for the TIN.
+          example: gb
+        tax_identification_number:
+          type: string
+          description: The Tax Identification Number to validate.
+          example: GB830930346
+        additional_parameters:
+          $ref: '#/components/schemas/LookupAdditionalParametersV2'
+        prefer_cached_result:
+          type: boolean
+          description: Set to true to attempt returning a result from the Instant Lookup cache.
+          default: false
+    LookupAdditionalParametersV2:
+      type: object
+      description: Additional country-specific parameters for TIN validation.
+      properties:
+        name:
+          type: string
+          description: Business name for fuzzy matching.
+          example: teamwear
+        address:
+          type: string
+          description: Business address for fuzzy matching.
+          example: Wildflower 22 Belfast
     LookupErrorResponseV2:
       type: object
       properties:
