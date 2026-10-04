@@ -35,6 +35,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fonoa.png
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
   - Tax
   - VAT
@@ -159,6 +162,9 @@ apis:
   - type: Documentation
     url: https://docs.fonoa.com/reference/onboarding-v2
 common:
+  - type: CapabilityMap
+    url: capabilities/fonoa-capability-edges.yml
+    name: Fonoa Business Capability Map
   - type: AgenticAccess
     url: agentic-access/fonoa-agentic-access.yml
   - type: TrustCenter
