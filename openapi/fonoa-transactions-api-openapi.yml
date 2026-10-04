@@ -54,6 +54,70 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TransactionLineItemTaxBreakdown:
+      type: object
+      required:
+      - rate
+      - regime
+      properties:
+        amount:
+          type: number
+          description: Tax amount applied.
+          example: '2.30'
+        application_mode:
+          type: string
+          description: 'Defines tax basis: ADD_TO_UNIT_PRICE or INCLUDED_IN_UNIT_PRICE.'
+        code:
+          type: string
+          maxLength: 10
+          description: Tax code required by some tax authorities.
+          example: M11
+        rate:
+          type: number
+          description: Non-negative tax rate percentage applied to an item.
+          example: 25
+        regime:
+          type: string
+          maxLength: 10
+          description: Name of the tax regime.
+          example: VAT
+        type:
+          type: string
+          maxLength: 10
+          description: Tax type required by some tax authorities.
+          example: PT-MA
+    TransactionErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code. e.g., field_not_valid
+        doc_link:
+          type: string
+          description: Link to error documentation.
+        field:
+          type: string
+          description: Field from the input request that caused the error.
+        message:
+          type: string
+          description: Error message.
+        type:
+          type: string
+          description: Error type. e.g., warning, validation, general, tax_authority
+    TransactionOnboardedEntity:
+      type: object
+      required:
+      - id
+      properties:
+        external_id:
+          type: string
+          maxLength: 150
+          description: External resource identifier provided by the customer.
+          example: MY_EXTERNAL_ID_001
+        id:
+          type: string
+          description: Fonoa id representing a resource. Exact length 32.
+          example: a7cc64422fc247069aa64d4fe8b387c5
     TransactionEntityTaxInformation:
       type: object
       properties:
@@ -96,6 +160,19 @@ components:
           example: '123456789'
         type:
           type: string
+    TransactionEntityContactDetails:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          description: Email address for tax authority communications.
+          example: someone@email.com
+        phone_number:
+          type: string
+          description: The customer's phone number.
+          example: '+10023456789'
     TransactionRequest:
       type: object
       required:
@@ -207,185 +284,6 @@ components:
         transaction_id:
           type: string
           description: The unique external transaction identifier provided with the initial request.
-    TransactionLineItemTaxBreakdown:
-      type: object
-      required:
-      - rate
-      - regime
-      properties:
-        amount:
-          type: number
-          description: Tax amount applied.
-          example: '2.30'
-        application_mode:
-          type: string
-          description: 'Defines tax basis: ADD_TO_UNIT_PRICE or INCLUDED_IN_UNIT_PRICE.'
-        code:
-          type: string
-          maxLength: 10
-          description: Tax code required by some tax authorities.
-          example: M11
-        rate:
-          type: number
-          description: Non-negative tax rate percentage applied to an item.
-          example: 25
-        regime:
-          type: string
-          maxLength: 10
-          description: Name of the tax regime.
-          example: VAT
-        type:
-          type: string
-          maxLength: 10
-          description: Tax type required by some tax authorities.
-          example: PT-MA
-    TransactionEntityAddress:
-      type: object
-      required:
-      - country_code
-      properties:
-        address_line_1:
-          type: string
-          description: Street name and number of the company.
-          example: R. Augusta 2
-        address_line_2:
-          type: string
-        canton:
-          type: string
-        city:
-          type: string
-          description: The city where the entity is registered.
-          example: Lisbon
-        city_code:
-          type: string
-        country_code:
-          type: string
-          description: ISO 3166-1 alpha-2 uppercase country code.
-          example: PT
-        district:
-          type: string
-        neighbourhood:
-          type: string
-        number:
-          type: string
-          example: '2'
-        postal_code:
-          type: string
-          example: 1100-053
-        prefix:
-          type: string
-        province:
-          type: string
-          example: Estremadura
-        region:
-          type: string
-        state:
-          type: string
-        suffix:
-          type: string
-    TransactionPayment:
-      type: object
-      required:
-      - type
-      properties:
-        amount:
-          type: number
-          description: Amount paid by this payment type.
-          example: '122.00'
-        card_brand:
-          type: string
-          description: Card brand used for the payment.
-          example: VISA
-        code:
-          type: string
-          maxLength: 32
-          description: Payment type code required by some tax authorities.
-          example: PUE
-        date_of_payment:
-          type: string
-          description: Date of the payment (RFC3339 format).
-          example: '2021-01-01T00:00:00Z'
-        type:
-          type: string
-          maxLength: 32
-          description: 'Free text or predefined payment type: CARD, CASH, CHECK, etc.'
-          example: CARD ending in 2022
-    TransactionEntityContactDetails:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-          description: Email address for tax authority communications.
-          example: someone@email.com
-        phone_number:
-          type: string
-          description: The customer's phone number.
-          example: '+10023456789'
-    TransactionErrorResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code. e.g., field_not_valid
-        doc_link:
-          type: string
-          description: Link to error documentation.
-        field:
-          type: string
-          description: Field from the input request that caused the error.
-        message:
-          type: string
-          description: Error message.
-        type:
-          type: string
-          description: Error type. e.g., warning, validation, general, tax_authority
-    TransactionNonOnboardedEntity:
-      type: object
-      required:
-      - legal_name
-      - type
-      properties:
-        address:
-          allOf:
-          - $ref: '#/components/schemas/TransactionEntityAddress'
-          description: Address of an entity.
-          type: object
-        contact_details:
-          allOf:
-          - $ref: '#/components/schemas/TransactionEntityContactDetails'
-          description: Contact details of an entity.
-          type: object
-        entity_number:
-          type: string
-          maxLength: 50
-          description: Company registration number or personal identifier.
-          example: 011589551
-        entity_number_type:
-          type: string
-          maxLength: 50
-          description: Company or individual number type.
-          example: '93'
-        legal_name:
-          type: string
-          maxLength: 450
-          description: Full legal name of the company or individual.
-          example: Acme LLC
-        tax_information:
-          allOf:
-          - $ref: '#/components/schemas/TransactionEntityTaxInformation'
-          description: Tax information of an entity.
-          type: object
-        trade_name:
-          type: string
-          maxLength: 450
-          description: The name used for doing business.
-          example: Acme
-        type:
-          type: string
-          description: 'Entity type defining the type of transaction: BUSINESS, INDIVIDUAL, or ECONOMIC_OPERATOR.'
-          example: BUSINESS
     TransactionLineItem:
       type: object
       required:
@@ -443,20 +341,122 @@ components:
           type: number
           description: Price of a single unit, excluding taxes based on net price.
           example: '2.30'
-    TransactionOnboardedEntity:
+    TransactionEntityAddress:
       type: object
       required:
-      - id
+      - country_code
       properties:
-        external_id:
+        address_line_1:
           type: string
-          maxLength: 150
-          description: External resource identifier provided by the customer.
-          example: MY_EXTERNAL_ID_001
-        id:
+          description: Street name and number of the company.
+          example: R. Augusta 2
+        address_line_2:
           type: string
-          description: Fonoa id representing a resource. Exact length 32.
-          example: a7cc64422fc247069aa64d4fe8b387c5
+        canton:
+          type: string
+        city:
+          type: string
+          description: The city where the entity is registered.
+          example: Lisbon
+        city_code:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 uppercase country code.
+          example: PT
+        district:
+          type: string
+        neighbourhood:
+          type: string
+        number:
+          type: string
+          example: '2'
+        postal_code:
+          type: string
+          example: 1100-053
+        prefix:
+          type: string
+        province:
+          type: string
+          example: Estremadura
+        region:
+          type: string
+        state:
+          type: string
+        suffix:
+          type: string
+    TransactionNonOnboardedEntity:
+      type: object
+      required:
+      - legal_name
+      - type
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/TransactionEntityAddress'
+          description: Address of an entity.
+          type: object
+        contact_details:
+          allOf:
+          - $ref: '#/components/schemas/TransactionEntityContactDetails'
+          description: Contact details of an entity.
+          type: object
+        entity_number:
+          type: string
+          maxLength: 50
+          description: Company registration number or personal identifier.
+          example: 011589551
+        entity_number_type:
+          type: string
+          maxLength: 50
+          description: Company or individual number type.
+          example: '93'
+        legal_name:
+          type: string
+          maxLength: 450
+          description: Full legal name of the company or individual.
+          example: Acme LLC
+        tax_information:
+          allOf:
+          - $ref: '#/components/schemas/TransactionEntityTaxInformation'
+          description: Tax information of an entity.
+          type: object
+        trade_name:
+          type: string
+          maxLength: 450
+          description: The name used for doing business.
+          example: Acme
+        type:
+          type: string
+          description: 'Entity type defining the type of transaction: BUSINESS, INDIVIDUAL, or ECONOMIC_OPERATOR.'
+          example: BUSINESS
+    TransactionPayment:
+      type: object
+      required:
+      - type
+      properties:
+        amount:
+          type: number
+          description: Amount paid by this payment type.
+          example: '122.00'
+        card_brand:
+          type: string
+          description: Card brand used for the payment.
+          example: VISA
+        code:
+          type: string
+          maxLength: 32
+          description: Payment type code required by some tax authorities.
+          example: PUE
+        date_of_payment:
+          type: string
+          description: Date of the payment (RFC3339 format).
+          example: '2021-01-01T00:00:00Z'
+        type:
+          type: string
+          maxLength: 32
+          description: 'Free text or predefined payment type: CARD, CASH, CHECK, etc.'
+          example: CARD ending in 2022
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
