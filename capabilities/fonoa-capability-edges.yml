@@ -1,0 +1,47 @@
+slug: fonoa
+provider: Fonoa
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Tax
+  spec_file: fonoa-tax-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.92
+  evidence: '"Tax calculation API that determines applicable VAT, GST, and sales tax rates for transactions
+    across 100+ jurisdictions"'
+  reason: The operation performs real-time VAT/GST/sales-tax determination, which is squarely Indirect
+    Tax Management. No other reading of the schemas (TaxDetermineRequest/Response) fits.
+- tag: Lookup V2
+  spec_file: fonoa-lookup-v2-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.75
+  evidence: '"Tax Identification Number (TIN) validation API ... Enables real-time VAT/GST ID verification,
+    TIN search by business name"'
+  reason: Validating counterparty VAT/GST tax IDs is an indirect-tax compliance control, so Indirect Tax
+    Management is the closest fit. Some ambiguity remains between indirect tax and tax reporting/compliance,
+    since validation is an input to both.
+- tag: Transactions
+  spec_file: fonoa-transactions-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.7
+  evidence: '"Unified e-invoicing API that manages the full transaction lifecycle including submitting,
+    adjusting, crediting, and canceling e-invoices in compliance with local mandates"'
+  reason: Submitting transactions for e-invoicing mandates is statutory transaction reporting to tax authorities,
+    so Tax Reporting & Compliance is the best fit. Ambiguity exists with Indirect Tax Management and with
+    AR invoicing, so confidence is capped.
