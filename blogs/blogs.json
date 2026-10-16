@@ -2,12 +2,15 @@
   "repo": "fonoa",
   "feeds": [
     {
-      "source": "https://docs.fonoa.com/reference/change-log",
-      "error": "HTTPError"
+      "source": "https://www.fonoa.com/resources/blog",
+      "feed_url": "https://www.fonoa.com/resources/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
   "post_count": 5,
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "agent_pulled": "2026-07-04",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
