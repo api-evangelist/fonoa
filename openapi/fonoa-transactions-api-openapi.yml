@@ -54,70 +54,50 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TransactionLineItemTaxBreakdown:
+    TransactionEntityAddress:
       type: object
       required:
-      - rate
-      - regime
+      - country_code
       properties:
-        amount:
-          type: number
-          description: Tax amount applied.
-          example: '2.30'
-        application_mode:
+        address_line_1:
           type: string
-          description: 'Defines tax basis: ADD_TO_UNIT_PRICE or INCLUDED_IN_UNIT_PRICE.'
-        code:
+          description: Street name and number of the company.
+          example: R. Augusta 2
+        address_line_2:
           type: string
-          maxLength: 10
-          description: Tax code required by some tax authorities.
-          example: M11
-        rate:
-          type: number
-          description: Non-negative tax rate percentage applied to an item.
-          example: 25
-        regime:
+        canton:
           type: string
-          maxLength: 10
-          description: Name of the tax regime.
-          example: VAT
-        type:
+        city:
           type: string
-          maxLength: 10
-          description: Tax type required by some tax authorities.
-          example: PT-MA
-    TransactionErrorResponse:
-      type: object
-      properties:
-        code:
+          description: The city where the entity is registered.
+          example: Lisbon
+        city_code:
           type: string
-          description: Error code. e.g., field_not_valid
-        doc_link:
+        country_code:
           type: string
-          description: Link to error documentation.
-        field:
+          description: ISO 3166-1 alpha-2 uppercase country code.
+          example: PT
+        district:
           type: string
-          description: Field from the input request that caused the error.
-        message:
+        neighbourhood:
           type: string
-          description: Error message.
-        type:
+        number:
           type: string
-          description: Error type. e.g., warning, validation, general, tax_authority
-    TransactionOnboardedEntity:
-      type: object
-      required:
-      - id
-      properties:
-        external_id:
+          example: '2'
+        postal_code:
           type: string
-          maxLength: 150
-          description: External resource identifier provided by the customer.
-          example: MY_EXTERNAL_ID_001
-        id:
+          example: 1100-053
+        prefix:
           type: string
-          description: Fonoa id representing a resource. Exact length 32.
-          example: a7cc64422fc247069aa64d4fe8b387c5
+        province:
+          type: string
+          example: Estremadura
+        region:
+          type: string
+        state:
+          type: string
+        suffix:
+          type: string
     TransactionEntityTaxInformation:
       type: object
       properties:
@@ -143,36 +123,6 @@ components:
           type: string
           description: Tax number of tax registered entity.
           example: 69061864-2-99
-    TransactionEntityTaxNumberCountrySpecific:
-      type: object
-      properties:
-        business_model:
-          type: array
-          items:
-            type: string
-        country_code:
-          type: string
-          example: US
-        country_subdivision_code:
-          type: string
-        tax_number:
-          type: string
-          example: '123456789'
-        type:
-          type: string
-    TransactionEntityContactDetails:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-          description: Email address for tax authority communications.
-          example: someone@email.com
-        phone_number:
-          type: string
-          description: The customer's phone number.
-          example: '+10023456789'
     TransactionRequest:
       type: object
       required:
@@ -267,6 +217,68 @@ components:
           type: string
           description: 'Type of the transaction: FULL, SIMPLIFIED, RECEIPT, RECEIPT_INVOICE, BILLING_STATEMENT, or DRAFT_INVOICE.'
           example: FULL
+    TransactionEntityTaxNumberCountrySpecific:
+      type: object
+      properties:
+        business_model:
+          type: array
+          items:
+            type: string
+        country_code:
+          type: string
+          example: US
+        country_subdivision_code:
+          type: string
+        tax_number:
+          type: string
+          example: '123456789'
+        type:
+          type: string
+    TransactionNonOnboardedEntity:
+      type: object
+      required:
+      - legal_name
+      - type
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/TransactionEntityAddress'
+          description: Address of an entity.
+          type: object
+        contact_details:
+          allOf:
+          - $ref: '#/components/schemas/TransactionEntityContactDetails'
+          description: Contact details of an entity.
+          type: object
+        entity_number:
+          type: string
+          maxLength: 50
+          description: Company registration number or personal identifier.
+          example: 011589551
+        entity_number_type:
+          type: string
+          maxLength: 50
+          description: Company or individual number type.
+          example: '93'
+        legal_name:
+          type: string
+          maxLength: 450
+          description: Full legal name of the company or individual.
+          example: Acme LLC
+        tax_information:
+          allOf:
+          - $ref: '#/components/schemas/TransactionEntityTaxInformation'
+          description: Tax information of an entity.
+          type: object
+        trade_name:
+          type: string
+          maxLength: 450
+          description: The name used for doing business.
+          example: Acme
+        type:
+          type: string
+          description: 'Entity type defining the type of transaction: BUSINESS, INDIVIDUAL, or ECONOMIC_OPERATOR.'
+          example: BUSINESS
     OperationResultResponse:
       type: object
       properties:
@@ -284,6 +296,38 @@ components:
         transaction_id:
           type: string
           description: The unique external transaction identifier provided with the initial request.
+    TransactionLineItemTaxBreakdown:
+      type: object
+      required:
+      - rate
+      - regime
+      properties:
+        amount:
+          type: number
+          description: Tax amount applied.
+          example: '2.30'
+        application_mode:
+          type: string
+          description: 'Defines tax basis: ADD_TO_UNIT_PRICE or INCLUDED_IN_UNIT_PRICE.'
+        code:
+          type: string
+          maxLength: 10
+          description: Tax code required by some tax authorities.
+          example: M11
+        rate:
+          type: number
+          description: Non-negative tax rate percentage applied to an item.
+          example: 25
+        regime:
+          type: string
+          maxLength: 10
+          description: Name of the tax regime.
+          example: VAT
+        type:
+          type: string
+          maxLength: 10
+          description: Tax type required by some tax authorities.
+          example: PT-MA
     TransactionLineItem:
       type: object
       required:
@@ -341,95 +385,38 @@ components:
           type: number
           description: Price of a single unit, excluding taxes based on net price.
           example: '2.30'
-    TransactionEntityAddress:
+    TransactionErrorResponse:
       type: object
-      required:
-      - country_code
       properties:
-        address_line_1:
+        code:
           type: string
-          description: Street name and number of the company.
-          example: R. Augusta 2
-        address_line_2:
+          description: Error code. e.g., field_not_valid
+        doc_link:
           type: string
-        canton:
+          description: Link to error documentation.
+        field:
           type: string
-        city:
+          description: Field from the input request that caused the error.
+        message:
           type: string
-          description: The city where the entity is registered.
-          example: Lisbon
-        city_code:
-          type: string
-        country_code:
-          type: string
-          description: ISO 3166-1 alpha-2 uppercase country code.
-          example: PT
-        district:
-          type: string
-        neighbourhood:
-          type: string
-        number:
-          type: string
-          example: '2'
-        postal_code:
-          type: string
-          example: 1100-053
-        prefix:
-          type: string
-        province:
-          type: string
-          example: Estremadura
-        region:
-          type: string
-        state:
-          type: string
-        suffix:
-          type: string
-    TransactionNonOnboardedEntity:
-      type: object
-      required:
-      - legal_name
-      - type
-      properties:
-        address:
-          allOf:
-          - $ref: '#/components/schemas/TransactionEntityAddress'
-          description: Address of an entity.
-          type: object
-        contact_details:
-          allOf:
-          - $ref: '#/components/schemas/TransactionEntityContactDetails'
-          description: Contact details of an entity.
-          type: object
-        entity_number:
-          type: string
-          maxLength: 50
-          description: Company registration number or personal identifier.
-          example: 011589551
-        entity_number_type:
-          type: string
-          maxLength: 50
-          description: Company or individual number type.
-          example: '93'
-        legal_name:
-          type: string
-          maxLength: 450
-          description: Full legal name of the company or individual.
-          example: Acme LLC
-        tax_information:
-          allOf:
-          - $ref: '#/components/schemas/TransactionEntityTaxInformation'
-          description: Tax information of an entity.
-          type: object
-        trade_name:
-          type: string
-          maxLength: 450
-          description: The name used for doing business.
-          example: Acme
+          description: Error message.
         type:
           type: string
-          description: 'Entity type defining the type of transaction: BUSINESS, INDIVIDUAL, or ECONOMIC_OPERATOR.'
-          example: BUSINESS
+          description: Error type. e.g., warning, validation, general, tax_authority
+    TransactionOnboardedEntity:
+      type: object
+      required:
+      - id
+      properties:
+        external_id:
+          type: string
+          maxLength: 150
+          description: External resource identifier provided by the customer.
+          example: MY_EXTERNAL_ID_001
+        id:
+          type: string
+          description: Fonoa id representing a resource. Exact length 32.
+          example: a7cc64422fc247069aa64d4fe8b387c5
     TransactionPayment:
       type: object
       required:
@@ -457,6 +444,19 @@ components:
           maxLength: 32
           description: 'Free text or predefined payment type: CARD, CASH, CHECK, etc.'
           example: CARD ending in 2022
+    TransactionEntityContactDetails:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          description: Email address for tax authority communications.
+          example: someone@email.com
+        phone_number:
+          type: string
+          description: The customer's phone number.
+          example: '+10023456789'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

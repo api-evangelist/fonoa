@@ -56,6 +56,217 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ApiResponseWrapperEmpty:
+      type: object
+      properties:
+        data:
+          type: string
+        errors:
+          type: array
+          description: List of errors for request. Returns null if successful.
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+        message:
+          type: string
+        status:
+          type: string
+          description: The status of the request.
+    OnboardingTaxNumberCountrySpecific:
+      type: object
+      required:
+      - country_code
+      - tax_number
+      properties:
+        business_model:
+          type: array
+          description: 'Business model: B2B or B2C.'
+          example: B2B
+          items:
+            type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 uppercase country code.
+          example: US
+        country_subdivision_code:
+          type: string
+          description: Code representing a specific subdivision within the country.
+          example: CA
+        tax_number:
+          type: string
+          maxLength: 50
+          description: Tax identification number for the specified country.
+          example: '123456789'
+        type:
+          type: string
+          description: The type of tax number.
+    OnboardingTemplateConfiguration:
+      type: object
+      required:
+      - color
+      - font
+      - logo_placement
+      properties:
+        color:
+          type: string
+          description: Hexadecimal color value used for the invoice (e.g., 293d62).
+        font:
+          type: string
+          description: Font used for the invoice (e.g., Helvetica World, Open Sans).
+        logo_placement:
+          type: string
+          description: 'Logo placement on the invoice: left or right.'
+    ApiResponseWrapperOnboardingAccepted:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/OnboardingAccepted'
+          type: object
+        errors:
+          type: array
+          description: List of errors for the job. Returns null if successful.
+          items:
+            $ref: '#/components/schemas/ErrorResponse'
+        message:
+          type: string
+        status:
+          type: string
+          example: success
+    OnboardingContactDetails:
+      type: object
+      properties:
+        certified_email:
+          type: string
+          description: Certified email address for official or legal communications.
+          example: certified@company.com
+        email:
+          type: string
+          maxLength: 250
+          description: Primary email address for contacting the company.
+          example: contact@company.com
+        phone_number:
+          type: string
+          maxLength: 250
+          description: Primary phone number for reaching the company.
+          example: +1-800-123-4567
+        website:
+          type: string
+          maxLength: 250
+          description: Official website URL of the company.
+          example: https://www.company.com
+    OnboardingCompanyRequest:
+      type: object
+      required:
+      - address
+      - company_number
+      - legal_name
+      - meta
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/OnboardingAddress'
+          description: The address where the company is registered.
+          type: object
+        company_number:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: Company's local identification number, usually identical to TIN.
+          example: '123456789'
+        contact_details:
+          allOf:
+          - $ref: '#/components/schemas/OnboardingContactDetails'
+          description: Contact details for the company.
+          type: object
+        establishment_date:
+          type: string
+          description: The date when the company was established (ISO8601 format).
+        legal_name:
+          type: string
+          minLength: 1
+          maxLength: 450
+          description: The company's legal name.
+          example: Fonoa Inc.
+        logo:
+          type: string
+          description: URL of the logo to be used in invoice documents for this company.
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/OnboardingMeta'
+          description: Metadata for onboarding the company.
+          type: object
+        representative_email:
+          type: string
+        representative_name:
+          type: string
+        tax_credentials:
+          allOf:
+          - $ref: '#/components/schemas/OnboardingTaxCredentialsRequest'
+          description: Tax credentials to report transactions. Not supported when updating.
+          type: object
+        tax_information:
+          allOf:
+          - $ref: '#/components/schemas/OnboardingTaxInformation'
+          description: Tax information for the company.
+          type: object
+        template_configuration:
+          allOf:
+          - $ref: '#/components/schemas/OnboardingTemplateConfiguration'
+          description: Settings for how your invoicing template will look.
+          type: object
+        trade_name:
+          type: string
+          maxLength: 450
+          description: The name the company uses to do business.
+    OnboardingTaxCredentialsRequest:
+      type: object
+      required:
+      - certificate_password
+      - certificate_private_key_base64
+      properties:
+        certificate_base64:
+          type: string
+          description: Base64-encoded certificate issued by the Tax Authority.
+          example: MIIDdzCCAl+gAwIBAgIEbFJ...
+        certificate_password:
+          type: string
+          maxLength: 250
+          description: Password to unlock the certificate for authentication.
+          example: securePassword123
+        certificate_private_key_base64:
+          type: string
+          description: Base64-encoded private key corresponding to the certificate.
+          example: MIIEvQIBADANBgkqhkiG9w0B...
+        certificate_type:
+          type: string
+          maxLength: 50
+          description: Type or format of the certificate (e.g., PKCS#12 or X.509).
+          example: pkcs12
+        password:
+          type: string
+          maxLength: 2048
+          description: Password for authentication.
+          example: Pa$$w0rdSecure!
+        pin:
+          type: string
+          maxLength: 2048
+          description: Personal Identification Number for additional security.
+          example: '1234'
+        username:
+          type: string
+          maxLength: 100
+          description: Username to authenticate with the Tax Authority.
+          example: tax_user_001
+    OnboardingAccepted:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: The identifier for the job.
+          example: fad3e91a0a46489cbcb82db1693df05b
+        job_status_location:
+          type: string
+          description: Full job URL that can be used for polling.
     ErrorResponse:
       type: object
       properties:
@@ -154,55 +365,27 @@ components:
           maxLength: 20
           description: An optional element that comes after the street name.
           example: Avenue
-    OnboardingAccepted:
-      type: object
-      properties:
-        job_id:
-          type: string
-          description: The identifier for the job.
-          example: fad3e91a0a46489cbcb82db1693df05b
-        job_status_location:
-          type: string
-          description: Full job URL that can be used for polling.
-    OnboardingTaxCredentialsRequest:
+    OnboardingMeta:
       type: object
       required:
-      - certificate_password
-      - certificate_private_key_base64
+      - country_code
       properties:
-        certificate_base64:
+        country_code:
           type: string
-          description: Base64-encoded certificate issued by the Tax Authority.
-          example: MIIDdzCCAl+gAwIBAgIEbFJ...
-        certificate_password:
+          description: Country of the entity to be onboarded in ISO 3166-1 alpha-2 format.
+        external_id:
           type: string
-          maxLength: 250
-          description: Password to unlock the certificate for authentication.
-          example: securePassword123
-        certificate_private_key_base64:
+          description: Additional reference identifier from your own system. Used for idempotency.
+        language_code:
           type: string
-          description: Base64-encoded private key corresponding to the certificate.
-          example: MIIEvQIBADANBgkqhkiG9w0B...
-        certificate_type:
+          description: Language of the entity in ISO 639-1 two-letter format.
+        transaction_purposes:
+          type: array
+          description: 'Workflow operations this company may be used for: document_generation, ta_notification, data_access, record_to_report.'
+          items:
+            type: string
+        webhook:
           type: string
-          maxLength: 50
-          description: Type or format of the certificate (e.g., PKCS#12 or X.509).
-          example: pkcs12
-        password:
-          type: string
-          maxLength: 2048
-          description: Password for authentication.
-          example: Pa$$w0rdSecure!
-        pin:
-          type: string
-          maxLength: 2048
-          description: Personal Identification Number for additional security.
-          example: '1234'
-        username:
-          type: string
-          maxLength: 100
-          description: Username to authenticate with the Tax Authority.
-          example: tax_user_001
     OnboardingTaxInformation:
       type: object
       properties:
@@ -252,189 +435,6 @@ components:
           maxLength: 50
           description: Tax identification number of the company.
           example: '123456789'
-    OnboardingTemplateConfiguration:
-      type: object
-      required:
-      - color
-      - font
-      - logo_placement
-      properties:
-        color:
-          type: string
-          description: Hexadecimal color value used for the invoice (e.g., 293d62).
-        font:
-          type: string
-          description: Font used for the invoice (e.g., Helvetica World, Open Sans).
-        logo_placement:
-          type: string
-          description: 'Logo placement on the invoice: left or right.'
-    OnboardingContactDetails:
-      type: object
-      properties:
-        certified_email:
-          type: string
-          description: Certified email address for official or legal communications.
-          example: certified@company.com
-        email:
-          type: string
-          maxLength: 250
-          description: Primary email address for contacting the company.
-          example: contact@company.com
-        phone_number:
-          type: string
-          maxLength: 250
-          description: Primary phone number for reaching the company.
-          example: +1-800-123-4567
-        website:
-          type: string
-          maxLength: 250
-          description: Official website URL of the company.
-          example: https://www.company.com
-    OnboardingTaxNumberCountrySpecific:
-      type: object
-      required:
-      - country_code
-      - tax_number
-      properties:
-        business_model:
-          type: array
-          description: 'Business model: B2B or B2C.'
-          example: B2B
-          items:
-            type: string
-        country_code:
-          type: string
-          description: ISO 3166-1 alpha-2 uppercase country code.
-          example: US
-        country_subdivision_code:
-          type: string
-          description: Code representing a specific subdivision within the country.
-          example: CA
-        tax_number:
-          type: string
-          maxLength: 50
-          description: Tax identification number for the specified country.
-          example: '123456789'
-        type:
-          type: string
-          description: The type of tax number.
-    OnboardingCompanyRequest:
-      type: object
-      required:
-      - address
-      - company_number
-      - legal_name
-      - meta
-      properties:
-        address:
-          allOf:
-          - $ref: '#/components/schemas/OnboardingAddress'
-          description: The address where the company is registered.
-          type: object
-        company_number:
-          type: string
-          minLength: 1
-          maxLength: 50
-          description: Company's local identification number, usually identical to TIN.
-          example: '123456789'
-        contact_details:
-          allOf:
-          - $ref: '#/components/schemas/OnboardingContactDetails'
-          description: Contact details for the company.
-          type: object
-        establishment_date:
-          type: string
-          description: The date when the company was established (ISO8601 format).
-        legal_name:
-          type: string
-          minLength: 1
-          maxLength: 450
-          description: The company's legal name.
-          example: Fonoa Inc.
-        logo:
-          type: string
-          description: URL of the logo to be used in invoice documents for this company.
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/OnboardingMeta'
-          description: Metadata for onboarding the company.
-          type: object
-        representative_email:
-          type: string
-        representative_name:
-          type: string
-        tax_credentials:
-          allOf:
-          - $ref: '#/components/schemas/OnboardingTaxCredentialsRequest'
-          description: Tax credentials to report transactions. Not supported when updating.
-          type: object
-        tax_information:
-          allOf:
-          - $ref: '#/components/schemas/OnboardingTaxInformation'
-          description: Tax information for the company.
-          type: object
-        template_configuration:
-          allOf:
-          - $ref: '#/components/schemas/OnboardingTemplateConfiguration'
-          description: Settings for how your invoicing template will look.
-          type: object
-        trade_name:
-          type: string
-          maxLength: 450
-          description: The name the company uses to do business.
-    ApiResponseWrapperEmpty:
-      type: object
-      properties:
-        data:
-          type: string
-        errors:
-          type: array
-          description: List of errors for request. Returns null if successful.
-          items:
-            $ref: '#/components/schemas/ErrorResponse'
-        message:
-          type: string
-        status:
-          type: string
-          description: The status of the request.
-    OnboardingMeta:
-      type: object
-      required:
-      - country_code
-      properties:
-        country_code:
-          type: string
-          description: Country of the entity to be onboarded in ISO 3166-1 alpha-2 format.
-        external_id:
-          type: string
-          description: Additional reference identifier from your own system. Used for idempotency.
-        language_code:
-          type: string
-          description: Language of the entity in ISO 639-1 two-letter format.
-        transaction_purposes:
-          type: array
-          description: 'Workflow operations this company may be used for: document_generation, ta_notification, data_access, record_to_report.'
-          items:
-            type: string
-        webhook:
-          type: string
-    ApiResponseWrapperOnboardingAccepted:
-      type: object
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/OnboardingAccepted'
-          type: object
-        errors:
-          type: array
-          description: List of errors for the job. Returns null if successful.
-          items:
-            $ref: '#/components/schemas/ErrorResponse'
-        message:
-          type: string
-        status:
-          type: string
-          example: success
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
