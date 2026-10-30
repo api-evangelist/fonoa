@@ -1,4 +1,4 @@
-# Fonoa (fonoa)
+# Fonoa
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,66 +66,133 @@
 
 Fonoa is a global indirect tax automation platform that connects the full indirect tax lifecycle on one platform, serving enterprises across 100+ countries and jurisdictions. The platform provides APIs for real-time tax ID validation across 120+ countries, VAT/GST and sales tax calculation, e-invoicing compliance with local mandates, transaction reporting, and automated multi-country tax return filing. Companies such as Zoom, Uber, Booking.com, and Remote.com rely on Fonoa to automate and manage their global indirect tax obligations through a single API integration.
 
-APIs.json: [https://raw.githubusercontent.com/api-evangelist/fonoa/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fonoa/refs/heads/main/apis.yml)
+**Areas:** Tax · VAT · GST · E-Invoicing · Tax Automation · Tax Compliance · Tax Calculation · Tax ID Validation · Invoice Generation · Global Tax · Indirect Tax · Fintech
 
-Naftiko: [https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=fonoa-api-evangelist&utm_content=repo](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=fonoa-api-evangelist&utm_content=repo)
+## Fonoa on APIs.io
 
-## Tags
+Everything profiled for Fonoa is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fonoa/](https://apis.io/providers/fonoa/)** — or go straight to one of the APIs or properties below.
 
-- Tax
-- VAT
-- GST
-- E-Invoicing
-- Tax Automation
-- Tax Compliance
-- Tax Calculation
-- Tax ID Validation
-- Invoice Generation
-- Global Tax
-- Indirect Tax
-- FinTech
+### APIs (5)
 
-## APIs
+- [Fonoa Webhooks API](https://apis.io/apis/fonoa/webhooks-api/) — Webhooks management API for configuring real-time event notifications from Fonoa's platform. Recommended over polling for transaction status updates and…
+- [Fonoa Lookup V2 API](https://apis.io/apis/fonoa/fonoa-lookup-v2-api/) — The Lookup V2 API from Fonoa — 5 operation(s) for lookup v2.
+- [Fonoa Onboarding API](https://apis.io/apis/fonoa/fonoa-onboarding-api/) — The Onboarding API from Fonoa — 1 operation(s) for onboarding.
+- [Fonoa Tax API](https://apis.io/apis/fonoa/fonoa-tax-api/) — The Tax API from Fonoa — 1 operation(s) for tax.
+- [Fonoa Transactions API](https://apis.io/apis/fonoa/fonoa-transactions-api/) — The Transactions API from Fonoa — 1 operation(s) for transactions.
 
-| Name | Description |
-|------|-------------|
-| Fonoa Validate API | Tax Identification Number (TIN) validation supporting instant lookups and batch validation across 120+ countries |
-| Fonoa Tax Engine API | Tax calculation API for VAT, GST, and sales tax rates across 100+ jurisdictions |
-| Fonoa E-Invoicing API | Unified e-invoicing API managing the full transaction lifecycle in compliance with local mandates |
-| Fonoa Onboarding API | API for registering companies and individuals as transaction participants |
-| Fonoa Webhooks API | Real-time event notification management for Fonoa platform events |
+### Published properties
 
-## Plans / Rate Limits / FinOps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Resource | File |
-|----------|------|
-| Plans & Pricing | [plans/fonoa-plans-pricing.yml](plans/fonoa-plans-pricing.yml) |
-| Rate Limits | [rate-limits/fonoa-rate-limits.yml](rate-limits/fonoa-rate-limits.yml) |
-| FinOps | [finops/fonoa-finops.yml](finops/fonoa-finops.yml) |
+#### Agentic access (1)
 
-Fonoa uses an enterprise commitment-based billing model with per-document (EUR 0.30) and per-organization overage charges on top of a negotiated base commitment. Rate limits are enforced per subscription key and IP address via Azure API Management; a 429 status is returned when limits are exceeded. Webhooks are recommended over polling to reduce call volume.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Timestamps
+- [Fonoa Agentic Access](https://apis.io/agentic-access/fonoa/fonoa-agentic-access/)
 
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
+#### JSON-LD (1)
 
-## Common Properties
+Linked-data contexts for the provider's vocabulary.
 
-| Type | URL |
-|------|-----|
-| Website | https://www.fonoa.com |
-| Documentation | https://docs.fonoa.com/reference/welcome-to-fonoa |
-| Getting Started | https://docs.fonoa.com/reference/getting-started-with-fonoa-api |
-| Authentication | https://docs.fonoa.com/reference/api-authentication-overview |
-| Environments | https://docs.fonoa.com/reference/environments |
-| Change Log | https://docs.fonoa.com/reference/change-log |
-| Blog | https://www.fonoa.com/resources/blog |
-| LinkedIn | https://www.linkedin.com/company/fonoa |
-| X (Twitter) | https://twitter.com/Fonoa_HQ |
-| GitHub Organization | https://github.com/Fonoa-Tech |
-| Security | https://www.fonoa.com/resources/security |
+- [Fonoa Context](https://apis.io/jsonld/fonoa/fonoa-context/)
 
-## Maintainers
+#### Collections (4)
 
-**Kin Lane** — [kin@apievangelist.com](mailto:kin@apievangelist.com)
+Postman and Open Collection request collections.
+
+- [Fonoa E-Invoicing Lookup V2 API](https://apis.io/collections/fonoa/open-fonoa-lookup-v2-api/)
+- [Fonoa E-Invoicing Lookup V2 Onboarding API](https://apis.io/collections/fonoa/open-fonoa-onboarding-api/)
+- [Fonoa E-Invoicing Lookup V2 Tax API](https://apis.io/collections/fonoa/open-fonoa-tax-api/)
+- [Fonoa E-Invoicing Lookup V2 Transactions API](https://apis.io/collections/fonoa/open-fonoa-transactions-api/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Fonoa Authentication](https://apis.io/security/fonoa/fonoa-authentication/)
+- [Fonoa Domain Security](https://apis.io/security/fonoa/fonoa-domain-security/)
+- [Fonoa Trust Center](https://apis.io/security/fonoa/fonoa-trust-center/)
+- [Fonoa Vulnerability Disclosure](https://apis.io/security/fonoa/fonoa-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Fonoa Plans Pricing](https://apis.io/plans/fonoa/fonoa-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Fonoa Rate Limits](https://apis.io/rate-limits/fonoa/fonoa-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Fonoa Finops](https://apis.io/finops/fonoa/fonoa-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.fonoa.com)
+- [Documentation](https://docs.fonoa.com/reference/welcome-to-fonoa)
+- [Getting started](https://docs.fonoa.com/reference/getting-started-with-fonoa-api)
+- [Changelog](https://docs.fonoa.com/reference/change-log)
+- [Blog](https://www.fonoa.com/resources/blog)
+- [Security](https://www.fonoa.com/resources/security)
+- [GitHub](https://github.com/Fonoa-Tech)
+
+## API Evangelist rating
+
+**Kin Score 36.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 56.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 13.2 |
+
+**Agent readiness 27.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fonoa/](https://apis.io/providers/fonoa/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fonoa: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fonoa/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
